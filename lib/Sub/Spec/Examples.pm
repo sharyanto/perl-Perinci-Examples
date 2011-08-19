@@ -7,7 +7,7 @@ use warnings;
 # VERSION
 
 our @ISA = qw(Exporter);
-our @EXPORT_OK = qw(delay);
+our @EXPORT_OK = qw(delay dies err);
 our %SPEC;
 
 $SPEC{delay} = {
@@ -91,6 +91,11 @@ __END__
 This module and its submodules contain an odd mix of various functions, mostly
 simple ones, each with its L<Sub::Spec> spec. Mostly used for testing spec or
 various Sub::Spec modules.
+
+
+=head1 FUNCTIONS
+
+None are exported by default, but they are exportable.
 
 
 =head1 SEE ALSO
