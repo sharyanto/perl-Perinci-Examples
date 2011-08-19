@@ -56,6 +56,26 @@ sub dies {
     die;
 }
 
+$SPEC{err} = {
+    summary => "Return error response",
+    description => <<'_',
+
+
+_
+    args => {
+        code => ['int*' => {
+            summary => 'Error code to return',
+            default => 500,
+        },
+    },
+};
+sub err {
+    my %args = @_;
+    my $code = int($args{code}) // 0;
+    $code = 500 if $code < 100 || $code > 555;
+    [$code, "Response $code"];
+}
+
 1;
 # ABSTRACT: Various spec'ed functions, for examples and testing
 __END__
