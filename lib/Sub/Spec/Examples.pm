@@ -20,14 +20,24 @@ _
     args => {
         n => ['int*' => {
             summary => 'Number of seconds to sleep',
+            arg_pos => 0,
             default => 10,
+        }],
+        per_second => ['bool*' => {
+            summary => 'Whether to sleep(1) for n times instead of sleep(n)',
+            default => 0,
         }],
     },
 };
 sub delay {
     my %args = @_;
     my $n = $args{n} // 10;
-    sleep $n;
+
+    if ($args{per_second}) {
+        sleep 1 for 1..$n;
+    } else {
+        sleep $n;
+    }
     [200, "OK", "Slept for $n sec(s)"];
 }
 
