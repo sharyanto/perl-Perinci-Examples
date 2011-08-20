@@ -25,6 +25,7 @@ _
             summary => 'Number of seconds to sleep',
             arg_pos => 0,
             default => 10,
+            min => 0, max => 7200,
         }],
         per_second => ['bool*' => {
             summary => 'Whether to sleep(1) for n times instead of sleep(n)',
