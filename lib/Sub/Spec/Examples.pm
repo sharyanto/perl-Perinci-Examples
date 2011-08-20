@@ -10,7 +10,11 @@ use Log::Any '$log';
 # VERSION
 
 our @ISA = qw(Exporter);
-our @EXPORT_OK = qw(delay dies err randlog);
+our @EXPORT_OK = qw(
+                       delay dies err randlog
+                       gen_array gen_hash
+                       noop
+               );
 our %SPEC;
 
 $SPEC{delay} = {
@@ -100,11 +104,13 @@ _
         }],
         min_level => ['str*' => {
             summary => 'Minimum level',
+            arg_pos => 1,
             default => 'fatal',
             in      => [keys %num_levels],
         }],
         max_level => ['str*' => {
             summary => 'Maximum level',
+            arg_pos => 2,
             default => 'trace',
             in      => [keys %num_levels],
         }],
@@ -129,6 +135,79 @@ sub randlog {
                              int(rand()*9000+1000));
     }
     [200, "OK"];
+}
+
+$SPEC{gen_array} = {
+    summary => "Generate an array of specified length",
+    description => <<'_',
+
+
+_
+    args => {
+        len => ['int*' => {
+            summary => 'Array length',
+            arg_pos => 0,
+            min => 0, max => 1000,
+        }],
+    },
+};
+sub gen_array {
+    my %args = @_;
+    my $len = int($args{len});
+    defined($len) or return [400, "Please specify len"];
+    $len = 1000 if $len > 1000;
+
+    my $array = [];
+    for (1..$len) {
+        push @$array, int(rand()*$len)+1;
+    }
+    [200, "OK", $array];
+}
+
+$SPEC{gen_hash} = {
+    summary => "Generate a hash with specified number of pairs",
+    description => <<'_',
+
+
+_
+    args => {
+        pairs => ['int*' => {
+            summary => 'Number of pairs',
+            arg_pos => 0,
+            min => 0, max => 1000,
+        }],
+    },
+};
+sub gen_hash {
+    my %args = @_;
+    my $pairs = int($args{pairs});
+    defined($pairs) or return [400, "Please specify pairs"];
+    $pairs = 1000 if $pairs > 1000;
+
+    my $hash = {};
+    for (1..$pairs) {
+        $hash->{$_} = int(rand()*$pairs)+1;
+    }
+    [200, "OK", $hash];
+}
+
+$SPEC{noop} = {
+    summary => "Do nothing, return original argument",
+    description => <<'_',
+
+
+_
+    args => {
+        arg => ['any*' => {
+            summary => 'Argument',
+            arg_pos => 0,
+        }],
+    },
+    features => {pure => 1},
+};
+sub noop {
+    my %args = @_;
+    [200, "OK", $args{arg}];
 }
 
 1;
