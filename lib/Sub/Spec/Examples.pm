@@ -66,7 +66,7 @@ _
         code => ['int*' => {
             summary => 'Error code to return',
             default => 500,
-        },
+        }],
     },
 };
 sub err {
