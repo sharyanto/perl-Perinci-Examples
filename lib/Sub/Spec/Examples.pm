@@ -95,6 +95,7 @@ _
             summary => 'Number of log messages to produce',
             arg_pos => 0,
             default => 10,
+            min => 0, max => 1000,
         }],
         min_level => ['str*' => {
             summary => 'Minimum level',
@@ -111,6 +112,7 @@ _
 sub randlog {
     my %args      = @_;
     my $n         = $args{n} // 10;
+    $n = 1000 if $n > 1000;
     my $min_level = $args{min_level} // "fatal";
     $min_level    = $str_levels{ min(keys %str_levels) }
         if !defined($num_levels{$min_level});
