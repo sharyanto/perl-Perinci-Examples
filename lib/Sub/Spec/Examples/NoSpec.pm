@@ -16,7 +16,7 @@ sub gen_array {
     my ($len) = @_;
     $len //= 10;
     my @res;
-    for (1..$len) { push @res, int($len)+1 }
+    for (1..$len) { push @res, int(rand $len)+1 }
     \@res;
 }
 
