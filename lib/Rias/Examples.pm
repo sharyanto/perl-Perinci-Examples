@@ -98,6 +98,7 @@ sub err {
     [$code, "Response $code"];
 }
 
+my %str_levels = qw(1 fatal 2 error 3 warn 4 info 5 debug 6 trace);
 $SPEC{randlog} = {
     v => 1.1,
     summary => "Produce some random Log::Any log messages",
@@ -114,31 +115,29 @@ _
             summary => 'Minimum level',
             schema => ['int*' => {default=>1, min=>0, max=>6}],
             pos => 1,
-        }],
-        max_level => ['str*' => {
+        },
+        max_level => {
             summary => 'Maximum level',
             schema => ['int*' => {default=>6, min=>0, max=>6}],
             pos => 2,
-        }],
+        },
     },
 };
 sub randlog {
     my %args      = @_;
     my $n         = $args{n} // 10;
     $n = 1000 if $n > 1000;
-    my $min_level = $args{min_level} // "fatal";
-    $min_level    = $str_levels{ min(keys %str_levels) }
-        if !defined($num_levels{$min_level});
-    my $max_level = $args{max_level} // "trace";
-    $max_level    = $str_levels{ max(keys %str_levels) }
-        if !defined($num_levels{$max_level});
+    my $min_level = $args{min_level};
+    $min_level = 1 if !defined($min_level) || !$str_levels{$min_level};
+    my $max_level = $args{max_level};
+    $max_level = 1 if !defined($max_level) || !$str_levels{$max_level};
 
     for my $i (1..$n) {
-        my $num_level = int($num_levels{$min_level} +
-            rand()*($num_levels{$max_level}-$num_levels{$min_level}+1));
+        my $num_level = int($min_level + rand()*($max_level-$min_level+1));
         my $str_level = $str_levels{$num_level};
-        $log->$str_level("This is random log message #$i, level=$str_level: ".
-                             int(rand()*9000+1000));
+        $log->$str_level("($i/$n) This is random log message #$i, ".
+                             "level=$num_level ($str_level): ".
+                                 int(rand()*9000+1000));
     }
     [200, "OK"];
 }
