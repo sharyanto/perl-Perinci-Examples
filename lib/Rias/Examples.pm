@@ -1,4 +1,4 @@
-package Sub::Spec::Examples;
+package Rias::Examples;
 
 use 5.010;
 use strict;
@@ -17,24 +17,36 @@ our @EXPORT_OK = qw(
                );
 our %SPEC;
 
+# package metadata
+$SPEC{''} = {
+    v => 1.1,
+    summary => 'This package contains various examples',
+};
+
+$SPEC{'$Var1'} = {
+    v => 1.1,
+    summary => 'This variable contains the meaning of life',
+};
+our $Var1 = 42;
+
 $SPEC{delay} = {
+    v => 1.1,
     summary => "Sleep, by default for 10 seconds",
     description => <<'_',
 
-Can be used to test time_limit clause.
+Can be used to test the *time_limit* property.
 
 _
     args => {
-        n => ['int*' => {
+        n => {
             summary => 'Number of seconds to sleep',
-            arg_pos => 0,
-            default => 10,
-            min => 0, max => 7200,
-        }],
-        per_second => ['bool*' => {
+            schema => ['int', {default=>10, min=>0, max=>7200}],
+            pos => 0,
+        },
+        per_second => {
             summary => 'Whether to sleep(1) for n times instead of sleep(n)',
-            default => 0,
-        }],
+            schema => ['bool', {default=>0}],
+        },
     },
 };
 sub delay {
@@ -50,6 +62,7 @@ sub delay {
 }
 
 $SPEC{dies} = {
+    v => 1.1,
     summary => "Dies tragically",
     description => <<'_',
 
@@ -65,16 +78,17 @@ sub dies {
 }
 
 $SPEC{err} = {
+    v => 1.1,
     summary => "Return error response",
     description => <<'_',
 
 
 _
     args => {
-        code => ['int*' => {
+        code => {
             summary => 'Error code to return',
-            default => 500,
-        }],
+            schema => ['int' => {default => 500}],
+        },
     },
 };
 sub err {
@@ -84,35 +98,27 @@ sub err {
     [$code, "Response $code"];
 }
 
-my %num_levels = (
-    fatal => 1, error => 2, warn  => 3,
-    info  => 4, debug => 5, trace => 6,
-);
-my %str_levels = reverse %num_levels;
-#use Data::Dump; dd(\%num_levels); dd(\%str_levels);
 $SPEC{randlog} = {
+    v => 1.1,
     summary => "Produce some random Log::Any log messages",
     description => <<'_',
 
 _
     args => {
-        n => ['int*' => {
+        n => {
             summary => 'Number of log messages to produce',
-            arg_pos => 0,
-            default => 10,
-            min => 0, max => 1000,
-        }],
-        min_level => ['str*' => {
+            schema => [int => {default => 10, min => 0, max => 1000}],
+            pos => 0,
+        },
+        min_level => {
             summary => 'Minimum level',
-            arg_pos => 1,
-            default => 'fatal',
-            in      => [keys %num_levels],
+            schema => ['int*' => {default=>1, min=>0, max=>6}],
+            pos => 1,
         }],
         max_level => ['str*' => {
             summary => 'Maximum level',
-            arg_pos => 2,
-            default => 'trace',
-            in      => [keys %num_levels],
+            schema => ['int*' => {default=>6, min=>0, max=>6}],
+            pos => 2,
         }],
     },
 };
@@ -138,17 +144,19 @@ sub randlog {
 }
 
 $SPEC{gen_array} = {
+    v => 1.1,
     summary => "Generate an array of specified length",
     description => <<'_',
 
 
 _
     args => {
-        len => ['int*' => {
+        len => {
             summary => 'Array length',
-            arg_pos => 0,
-            min => 0, max => 1000,
-        }],
+            schema => ['int' => {default=>10, min => 0, max => 1000}],
+            pos => 0,
+            req => 1,
+        },
     },
 };
 sub gen_array {
@@ -165,17 +173,18 @@ sub gen_array {
 }
 
 $SPEC{gen_hash} = {
+    v => 1.1,
     summary => "Generate a hash with specified number of pairs",
     description => <<'_',
 
 
 _
     args => {
-        pairs => ['int*' => {
+        pairs => {
             summary => 'Number of pairs',
-            arg_pos => 0,
-            min => 0, max => 1000,
-        }],
+            schema => ['int*' => {min => 0, max => 1000}],
+            pos => 0,
+        },
     },
 };
 sub gen_hash {
@@ -192,16 +201,18 @@ sub gen_hash {
 }
 
 $SPEC{noop} = {
+    v => 1.1,
     summary => "Do nothing, return original argument",
     description => <<'_',
 
 
 _
     args => {
-        arg => ['any*' => {
+        arg => {
             summary => 'Argument',
-            arg_pos => 0,
-        }],
+            schema => ['any'],
+            pos => 0,
+        },
     },
     features => {pure => 1},
 };
@@ -211,20 +222,20 @@ sub noop {
 }
 
 1;
-# ABSTRACT: Various spec'ed functions, for examples and testing
+# ABSTRACT: Example modules containing metadata and various example functions
 __END__
 
 =head1 SYNOPSIS
 
- use Sub::Spec::Examples qw(delay);
+ use Rias::Examples qw(delay);
  delay();
 
 
 =head1 DESCRIPTION
 
-This module and its submodules contain an odd mix of various functions, mostly
-simple ones, each with its L<Sub::Spec> spec. Mostly used for testing spec or
-various Sub::Spec modules.
+This module and its submodules contain an odd mix of various functions,
+variables, and other code entities, along with their L<Rinci> metadata. Mostly
+used for testing Rinci specification and the various Rias modules.
 
 
 =head1 FUNCTIONS
@@ -234,6 +245,6 @@ None are exported by default, but they are exportable.
 
 =head1 SEE ALSO
 
-L<Sub::Spec>
+L<Rinci>
 
 =cut

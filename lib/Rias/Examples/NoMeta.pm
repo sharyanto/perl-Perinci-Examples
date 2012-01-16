@@ -1,11 +1,13 @@
-package Sub::Spec::Examples::NoSpec;
+package Rias::Examples::NoMeta;
 
-# This is a sample of a "traditional" Perl module, with no spec or full response
-# sub return.
+# This is a sample of a "traditional" Perl module, with no metadata or enveloped
+# result.
 
 use 5.010;
 use strict;
 use warnings;
+
+our $Var1 = 1;
 
 sub pyth($$) {
     my ($a, $b) = @_;

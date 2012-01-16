@@ -1,29 +1,5 @@
-Revision history for Sub::Spec::Examples
+Revision history for Rias::Examples
 
-0.05     2011-10-24
+0.06     2012-01-16 (not yet released)
 
-         - Fix missing rand() in gen_array().
-
-
-0.04     2011-10-24
-
-         - Add Sub::Spec::Examples::NoSpec module.
-
-
-0.03     2011-08-20
-
-         - Add functions: randlog(), gen_array(), gen_hash(), noop().
-
-         - delay(): Limit 'n' to 7200.
-
-
-0.02     2011-08-20
-
-         - delay(): add 'per_second' argument.
-
-         - new function: err().
-
-
-0.01     2011-08-19
-
-         First release.
+         First release. Rename distribution from Sub-Spec-Examples.
