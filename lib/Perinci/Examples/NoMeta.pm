@@ -1,4 +1,4 @@
-package Rias::Examples::NoMeta;
+package Perinci::Examples::NoMeta;
 
 # This is a sample of a "traditional" Perl module, with no metadata or enveloped
 # result.
@@ -25,4 +25,4 @@ sub gen_array {
 # VERSION
 
 1;
-#ABSTRACT: Example of module without spec
+#ABSTRACT: Example of module without any metadata

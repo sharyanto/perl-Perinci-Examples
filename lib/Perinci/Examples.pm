@@ -1,4 +1,4 @@
-package Rias::Examples;
+package Perinci::Examples;
 
 use 5.010;
 use strict;
@@ -18,11 +18,12 @@ our @EXPORT_OK = qw(
 our %SPEC;
 
 # package metadata
-$SPEC{''} = {
+$SPEC{':PACKAGE'} = {
     v => 1.1,
     summary => 'This package contains various examples',
 };
 
+# variable metadata
 $SPEC{'$Var1'} = {
     v => 1.1,
     summary => 'This variable contains the meaning of life',
