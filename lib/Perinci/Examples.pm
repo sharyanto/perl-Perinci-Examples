@@ -18,7 +18,7 @@ our @EXPORT_OK = qw(
 our %SPEC;
 
 # package metadata
-$SPEC{':PACKAGE'} = {
+$SPEC{':package'} = {
     v => 1.1,
     summary => 'This package contains various examples',
 };
