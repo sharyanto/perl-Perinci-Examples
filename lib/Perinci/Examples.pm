@@ -227,7 +227,7 @@ __END__
 
 =head1 SYNOPSIS
 
- use Rias::Examples qw(delay);
+ use Perinci::Examples qw(delay);
  delay();
 
 
@@ -235,7 +235,7 @@ __END__
 
 This module and its submodules contain an odd mix of various functions,
 variables, and other code entities, along with their L<Rinci> metadata. Mostly
-used for testing Rinci specification and the various Rias modules.
+used for testing Rinci specification and the various L<Perinci> modules.
 
 
 =head1 FUNCTIONS
@@ -245,6 +245,6 @@ None are exported by default, but they are exportable.
 
 =head1 SEE ALSO
 
-L<Rinci>
+L<Perinci>
 
 =cut
