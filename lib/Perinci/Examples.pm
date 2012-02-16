@@ -238,7 +238,7 @@ _
             schema => ['int*' => {min=>1, max=>1000}],
         },
         f1 => {
-            schema => ['int*' => {xmin=>1, xmax=>10}],
+            schema => ['float*' => {xmin=>1, xmax=>10}],
         },
         s1 => {
             schema => [str => {
