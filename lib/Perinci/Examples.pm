@@ -21,6 +21,7 @@ our %SPEC;
 $SPEC{':package'} = {
     v => 1.1,
     summary => 'This package contains various examples',
+    "summary.alt.lang.id_ID" => 'Paket ini berisi berbagai contoh',
 };
 
 # variable metadata
@@ -30,22 +31,33 @@ $SPEC{'$Var1'} = {
 };
 our $Var1 = 42;
 
+# as well as testing default_lang and *.alt.lang.XX properties
 $SPEC{delay} = {
     v => 1.1,
-    summary => "Sleep, by default for 10 seconds",
-    description => <<'_',
+    default_lang => 'id_ID',
+    "summary.alt.lang.en_US" => "Sleep, by default for 10 seconds",
+    "description.alt.lang.en_US" => <<'_',
 
 Can be used to test the *time_limit* property.
 
 _
+    summary => "Tidur, defaultnya 10 detik",
+    description => <<'_',
+
+Dapat dipakai untuk menguji properti *time_limit*.
+
+_
     args => {
         n => {
+            default_lang => 'en_US',
             summary => 'Number of seconds to sleep',
+            "summary.alt.lang.id_ID" => 'Jumlah detik',
             schema => ['int', {default=>10, min=>0, max=>7200}],
             pos => 0,
         },
         per_second => {
-            summary => 'Whether to sleep(1) for n times instead of sleep(n)',
+            "summary.alt.lang.en_US" => 'Whether to sleep(1) for n times instead of sleep(n)',
+            summary => 'Jika diset ya, lakukan sleep(1) n kali, bukan sleep(n)',
             schema => ['bool', {default=>0}],
         },
     },
