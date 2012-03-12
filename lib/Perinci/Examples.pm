@@ -22,6 +22,16 @@ $SPEC{':package'} = {
     v => 1.1,
     summary => 'This package contains various examples',
     "summary.alt.lang.id_ID" => 'Paket ini berisi berbagai contoh',
+    description => <<'_',
+
+A sample description
+
+    verbatim
+    line2
+
+Another paragraph with *bold*, _italic_ text.
+
+_
 };
 
 # variable metadata
