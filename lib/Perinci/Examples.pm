@@ -151,9 +151,9 @@ sub randlog {
     my $n         = $args{n} // 10;
     $n = 1000 if $n > 1000;
     my $min_level = $args{min_level};
-    $min_level = 1 if !defined($min_level) || !$str_levels{$min_level};
+    $min_level = 1 if !defined($min_level) || $min_level < 0;
     my $max_level = $args{max_level};
-    $max_level = 1 if !defined($max_level) || !$str_levels{$max_level};
+    $max_level = 6 if !defined($max_level) || $max_level > 6;
 
     for my $i (1..$n) {
         my $num_level = int($min_level + rand()*($max_level-$min_level+1));
