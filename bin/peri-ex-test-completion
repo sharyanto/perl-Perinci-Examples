@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 
-package peri_ex_test_completion; # make PodWeaver happy
-
 # since Perinci::CmdLine requires us for testing, if we don't have
 # Perinci::CmdLine yet, we exit 0 so we don't fail compile tests.
 eval { require Perinci::CmdLine }; exit 0 if $@;
@@ -9,3 +7,4 @@ eval { require Perinci::CmdLine }; exit 0 if $@;
 Perinci::CmdLine->new(url=>'/Perinci/Examples/test_completion')->run;
 
 # ABSTRACT: A script to test bash completion
+# PODNAME: peri-ex-test-completion
