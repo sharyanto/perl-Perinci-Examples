@@ -3,9 +3,10 @@ package Perinci::Examples;
 use 5.010;
 use strict;
 use warnings;
+use Log::Any '$log';
 
 use List::Util qw(min max);
-use Log::Any '$log';
+use Scalar::Util qw(looks_like_number);
 
 # VERSION
 
@@ -286,6 +287,34 @@ _
 };
 sub test_completion {
     [200, "OK"];
+}
+
+$SPEC{sum} = {
+    v => 1.1,
+    summary => "Sum numbers in array",
+    description => <<'_',
+
+This function can be used to test passing nonscalar (array) arguments.
+
+_
+    args => {
+        array => {
+            summary => 'Array',
+            schema => ['array*'],
+            req => 1,
+            pos => 0,
+        },
+    },
+    features => {},
+};
+sub sum {
+    my %args = @_;
+
+    my $sum = 0;
+    for (@{$args{array}}) {
+        $sum += $_ if defined && looks_like_number($_);
+    }
+    [200, "OK", $sum];
 }
 
 1;
