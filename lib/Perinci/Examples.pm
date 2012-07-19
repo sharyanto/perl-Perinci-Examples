@@ -366,11 +366,6 @@ variables, and other code entities, along with their L<Rinci> metadata. Mostly
 used for testing Rinci specification and the various L<Perinci> modules.
 
 
-=head1 FUNCTIONS
-
-None are exported by default, but they are exportable.
-
-
 =head1 SEE ALSO
 
 L<Perinci>
