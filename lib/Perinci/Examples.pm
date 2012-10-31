@@ -300,11 +300,35 @@ _
     args => {
         array => {
             summary => 'Array',
-            schema => ['array*'],
-            req => 1,
-            pos => 0,
+            schema  => ['array*', of => 'float*'],
+            req     => 1,
+            pos     => 0,
+            greedy  => 1,
+        },
+        round => {
+            summary => 'Whether to round result to integer',
+            schema  => [bool => default => 0],
         },
     },
+    examples => [
+        {
+            summary => 'First example',
+            args    => {array=>[1, 2, 3]},
+            status  => 200,
+            result  => 6,
+        },
+        {
+            summary => 'Second example, using argv',
+            argv    => [qw/--round 1.1 2.1 3.1/],
+            status  => 200,
+            result  => 6,
+        },
+        {
+            summary => 'Third example, invalid arguments',
+            args    => {array=>[qw/a/]},
+            status  => 400,
+        },
+    ],
     features => {},
 };
 sub sum {
@@ -314,6 +338,7 @@ sub sum {
     for (@{$args{array}}) {
         $sum += $_ if defined && looks_like_number($_);
     }
+    $sum = int($sum) if $args{round};
     [200, "OK", $sum];
 }
 
