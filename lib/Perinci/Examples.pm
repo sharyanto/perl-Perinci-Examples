@@ -171,6 +171,7 @@ $SPEC{gen_array} = {
     summary => "Generate an array of specified length",
     description => <<'_',
 
+Also tests result schema.
 
 _
     args => {
@@ -180,6 +181,9 @@ _
             pos => 0,
             req => 1,
         },
+    },
+    result => {
+        schema => ['array*', of => 'int*'],
     },
 };
 sub gen_array {
@@ -200,6 +204,7 @@ $SPEC{gen_hash} = {
     summary => "Generate a hash with specified number of pairs",
     description => <<'_',
 
+Also tests result schema.
 
 _
     args => {
@@ -208,6 +213,9 @@ _
             schema => ['int*' => {min => 0, max => 1000}],
             pos => 0,
         },
+    },
+    result => {
+        schema => ['array*', of => 'int*'],
     },
 };
 sub gen_hash {
@@ -363,6 +371,9 @@ _
             req => 1,
             pos => 1,
         },
+    },
+    result => {
+        schema => 'hash*',
     },
     features => {},
 };
