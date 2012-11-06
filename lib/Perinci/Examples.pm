@@ -74,7 +74,7 @@ _
     },
 };
 sub delay {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     my $n = $args{n} // 10;
 
     if ($args{per_second}) {
@@ -116,7 +116,7 @@ _
     },
 };
 sub err {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     my $code = int($args{code}) // 0;
     $code = 500 if $code < 100 || $code > 555;
     [$code, "Response $code"];
@@ -148,7 +148,7 @@ _
     },
 };
 sub randlog {
-    my %args      = @_;
+    my %args      = @_; # NO_VALIDATE_ARGS
     my $n         = $args{n} // 10;
     $n = 1000 if $n > 1000;
     my $min_level = $args{min_level};
@@ -187,7 +187,7 @@ _
     },
 };
 sub gen_array {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     my $len = int($args{len});
     defined($len) or return [400, "Please specify len"];
     $len = 1000 if $len > 1000;
@@ -219,7 +219,7 @@ _
     },
 };
 sub gen_hash {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     my $pairs = int($args{pairs});
     defined($pairs) or return [400, "Please specify pairs"];
     $pairs = 1000 if $pairs > 1000;
@@ -249,7 +249,7 @@ _
 };
 
 sub noop {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", $args{arg}];
 }
 
@@ -294,6 +294,7 @@ _
     features => {pure => 1},
 };
 sub test_completion {
+    # NO_VALIDATE_ARGS
     [200, "OK"];
 }
 
@@ -340,7 +341,7 @@ _
     features => {},
 };
 sub sum {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
 
     my $sum = 0;
     for (@{$args{array}}) {
@@ -376,11 +377,12 @@ _
         schema => 'hash*',
     },
     features => {},
+    "_perinci.sub.wrapper.validate_args" => 0,
 };
 sub merge_hash {
     my %args = @_;
-    my $h1 = $args{h1};
-    my $h2 = $args{h2};
+    my $h1 = $args{h1}; # VALIDATE_ARG
+    my $h2 = $args{h2}; # VALIDATE_ARG
 
     [200, "OK", {%$h1, %$h2}];
 }
