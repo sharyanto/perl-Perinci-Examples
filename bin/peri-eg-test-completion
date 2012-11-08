@@ -9,4 +9,4 @@ eval { require Perinci::CmdLine }; exit 0 if $@;
 Perinci::CmdLine->new(url=>'/Perinci/Examples/test_completion')->run;
 
 # ABSTRACT: A script to test bash completion
-# PODNAME: peri-ex-test-completion
+# PODNAME: peri-eg-test-completion
