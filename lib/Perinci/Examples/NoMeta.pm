@@ -26,3 +26,5 @@ sub gen_array {
 
 1;
 #ABSTRACT: Example of module without any metadata
+
+=for Pod::Coverage .*
