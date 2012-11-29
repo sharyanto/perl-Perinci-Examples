@@ -5,6 +5,7 @@ use strict;
 use warnings;
 use Log::Any '$log';
 
+use Data::Clone;
 use List::Util qw(min max);
 use Scalar::Util qw(looks_like_number);
 
@@ -166,6 +167,18 @@ sub randlog {
     [200, "OK"];
 }
 
+$SPEC{call_randlog} = clone($SPEC{randlog});
+$SPEC{call_randlog}{summary} = 'Call randlog()';
+$SPEC{call_randlog}{description} = <<'_';
+
+This is to test nested call (e.g. Log::Any::For::Package).
+
+_
+sub call_randlog {
+    # NO_VALIDATE_ARGS
+    randlog(@_);
+}
+
 $SPEC{gen_array} = {
     v => 1.1,
     summary => "Generate an array of specified length",
@@ -197,6 +210,18 @@ sub gen_array {
         push @$array, int(rand()*$len)+1;
     }
     [200, "OK", $array];
+}
+
+$SPEC{call_gen_array} = clone($SPEC{gen_array});
+$SPEC{call_gen_array}{summary} = 'Call gen_array()';
+$SPEC{call_gen_array}{description} = <<'_';
+
+This is to test nested call (e.g. Log::Any::For::Package).
+
+_
+sub call_gen_array {
+    # NO_VALIDATE_ARGS
+    gen_array(@_);
 }
 
 $SPEC{gen_hash} = {
