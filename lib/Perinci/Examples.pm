@@ -428,9 +428,16 @@ This module and its submodules contain an odd mix of various functions,
 variables, and other code entities, along with their L<Rinci> metadata. Mostly
 used for testing Rinci specification and the various L<Perinci> modules.
 
+Example scripts are put in a separate distribution (see
+L<Perinci::Examples::Bin>) to make dependencies for this distribution minimal
+(e.g. not depending on L<Perinci::CmdLine>) since this example module(s) are
+usually used in the tests of other modules.
+
 
 =head1 SEE ALSO
 
 L<Perinci>
+
+L<Perinci::Examples::Bin>
 
 =cut
