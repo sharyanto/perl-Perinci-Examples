@@ -412,6 +412,31 @@ sub merge_hash {
     [200, "OK", {%$h1, %$h2}];
 }
 
+$SPEC{test_validate_args} = {
+    v => 1.1,
+    summary => "Does nothing, only here to test # VALIDATE_ARGS",
+    args => {
+        a => {
+            schema => "int",
+        },
+        b => {
+            schema => [str => {min_len=>2}],
+        },
+        h1 => { # same as in merge_hash
+            schema => 'hash',
+        },
+    },
+    result => {
+        schema => 'str*',
+    },
+    features => {},
+    "_perinci.sub.wrapper.validate_args" => 0,
+};
+sub test_validate_args {
+    my %args = @_; # VALIDATE_ARGS
+    [200];
+}
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 __END__
