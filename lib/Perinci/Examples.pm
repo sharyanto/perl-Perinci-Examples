@@ -20,7 +20,7 @@ our @EXPORT_OK = qw(
 our %SPEC;
 
 # package metadata
-$SPEC{''} = {
+$SPEC{':package'} = {
     v => 1.1,
     summary => 'This package contains various examples',
     "summary.alt.lang.id_ID" => 'Paket ini berisi berbagai contoh',
