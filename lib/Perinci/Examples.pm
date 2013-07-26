@@ -437,6 +437,28 @@ sub test_validate_args {
     [200];
 }
 
+$SPEC{undescribed_args} = {
+    v => 1.1,
+    summary => 'This function has several undescribed args',
+    description => <<'_',
+
+Originally added to see how peri-func-usage or Perinci::To::Text will display
+the usage or documentation for this function.
+
+_
+    args => {
+        arg1 => {},
+        arg2 => {},
+        arg3 => {},
+        arg4 => {
+            cmdline_aliases => {A=>{}},
+        },
+    },
+};
+sub undescribed_args {
+    [200];
+}
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 __END__
