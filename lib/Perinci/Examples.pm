@@ -362,6 +362,20 @@ _
             args    => {array=>[qw/a/]},
             status  => 400,
         },
+
+        {
+            summary   => 'Total numbers found in a file (4th example, bash)',
+            src       => q(grep '[0-9]' file.txt | xargs sum),
+            src_plang => 'bash',
+        },
+        {
+            summary   => '2-dice roll (5th example, perl)',
+            src       => <<'EOT',
+my $res = sum(array=>[map {int(rand()*6+1)} 1..2]);
+say $res->[2] >= 6 ? "high" : "low";
+EOT
+            src_plang => 'perl',
+        },
     ],
     features => {},
 };
