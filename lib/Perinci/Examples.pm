@@ -473,6 +473,40 @@ sub undescribed_args {
     [200];
 }
 
+$SPEC{arg_default} = {
+    v => 1.1,
+    summary => 'Demonstrate argument default value from default and/or schema',
+    args => {
+        a => {
+            summary => 'No defaults',
+            schema  => ['int'],
+        },
+        b => {
+            summary => 'Default from "default" property',
+            default => 2,
+            schema  => ['int'],
+        },
+        c => {
+            summary => 'Default from schema',
+            schema  => ['int', default => 3],
+        },
+        d => {
+            summary => 'Default from "default" property as well as schema',
+            description => <<'_',
+
+"Default" property overrides default value from schema.
+
+_
+            default => 4,
+            schema  => ['int', default=>-4],
+        },
+    },
+};
+sub arg_default {
+    my %args = @_;
+    [200, "OK", join("\n", map { "$_=" . ($args{$_} // "") } (qw/a b c d/))];
+}
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 __END__
