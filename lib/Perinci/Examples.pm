@@ -164,7 +164,7 @@ sub randlog {
                              "level=$num_level ($str_level): ".
                                  int(rand()*9000+1000));
     }
-    [200, "OK"];
+    [200, "OK", "$n log message(s) produced"];
 }
 
 $SPEC{call_randlog} = clone($SPEC{randlog});
