@@ -528,6 +528,7 @@ _
 };
 sub return_args {
     my %args = @_; # NO_VALIDATE_ARGS
+    $log->tracef("return_args() is called with arguments: %s", \%args);
     [200, "OK", \%args];
 }
 
