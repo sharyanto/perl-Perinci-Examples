@@ -9,6 +9,9 @@ use experimental 'smartmatch';
 
 our %SPEC;
 
+# VERSION
+# DATE
+
 $SPEC{fruits} = {
     v => 1.1,
     args => {
@@ -39,8 +42,6 @@ _
 sub fruits {
     [200];
 }
-
-# VERSION
 
 1;
 #ABSTRACT: More completion examples

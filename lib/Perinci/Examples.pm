@@ -10,6 +10,7 @@ use List::Util qw(min max);
 use Scalar::Util qw(looks_like_number);
 
 # VERSION
+# DATE
 
 our @ISA = qw(Exporter);
 our @EXPORT_OK = qw(

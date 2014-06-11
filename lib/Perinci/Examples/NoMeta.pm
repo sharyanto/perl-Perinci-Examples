@@ -9,6 +9,9 @@ use warnings;
 
 our $Var1 = 1;
 
+# VERSION
+# DATE
+
 sub pyth($$) {
     my ($a, $b) = @_;
     ($a*$a + $b*$b)**0.5;
@@ -21,8 +24,6 @@ sub gen_array {
     for (1..$len) { push @res, int(rand $len)+1 }
     \@res;
 }
-
-# VERSION
 
 1;
 #ABSTRACT: Example of module without any metadata
