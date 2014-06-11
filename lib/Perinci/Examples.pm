@@ -261,6 +261,7 @@ $SPEC{noop} = {
     summary => "Do nothing, return original argument",
     description => <<'_',
 
+Will also return argument passed to it.
 
 _
     args => {
@@ -505,6 +506,29 @@ _
 sub arg_default {
     my %args = @_;
     [200, "OK", join("\n", map { "$_=" . ($args{$_} // "") } (qw/a b c d/))];
+}
+
+$SPEC{return_args} = {
+    v => 1.1,
+    summary => "Return arguments",
+    description => <<'_',
+
+Can be useful to check what arguments the function gets. Aside from normal
+arguments, sometimes function will receive special arguments (those prefixed
+with dash, `-`).
+
+_
+    args => {
+        arg => {
+            summary => 'Argument',
+            schema => ['any'],
+            pos => 0,
+        },
+    },
+};
+sub return_args {
+    my %args = @_; # NO_VALIDATE_ARGS
+    [200, "OK", \%args];
 }
 
 1;
