@@ -329,8 +329,8 @@ _
     features => {pure => 1},
 };
 sub test_completion {
-    # NO_VALIDATE_ARGS
-    [200, "OK"];
+    my %args = @_; # NO_VALIDATE_ARGS
+    [200, "OK", \%args];
 }
 
 $SPEC{sum} = {
