@@ -330,7 +330,8 @@ _
             element_completion => sub {
                 my %args = @_;
                 my $word = $args{word} // "";
-                [ map {$word . $_} "a".."z" ],
+                my $idx  = $args{index} // 0;
+                [ map {$word . $_ . $idx} "a".."z" ],
             },
         },
     },
