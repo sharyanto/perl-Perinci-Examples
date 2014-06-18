@@ -317,6 +317,14 @@ _
             schema => 'str',
             completion => sub { die },
         },
+        a1 => {
+            summary => 'For testing complete_arg_elem',
+            schema => [array => of => [str => {
+                in=>[qw/apple apricot banana grape grapefruit/,
+                     "red date", "red grape", "green grape",
+                 ],
+            }]],
+        },
     },
     features => {pure => 1},
 };
