@@ -325,6 +325,14 @@ _
                  ],
             }]],
         },
+        a2 => {
+            schema => ['array' => of => 'str'],
+            element_completion => sub {
+                my %args = @_;
+                my $word = $args{word} // "";
+                [ map {$word . $_} "a".."z" ],
+            },
+        },
     },
     features => {pure => 1},
 };
