@@ -289,11 +289,17 @@ This function is used to test argument completion.
 
 _
     args => {
+        i0 => {
+            schema => ['int*'],
+        },
         i1 => {
             schema => ['int*' => {min=>1, xmax=>100}],
         },
         i2 => {
             schema => ['int*' => {min=>1, max=>1000}],
+        },
+        f0 => {
+            schema => ['float*'],
         },
         f1 => {
             schema => ['float*' => {xmin=>1, xmax=>10}],
