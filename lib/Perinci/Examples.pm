@@ -282,37 +282,47 @@ sub noop {
 
 $SPEC{test_completion} = {
     v => 1.1,
-    summary => "Do nothing, return nothing",
+    summary => "Do nothing, return args",
     description => <<'_',
 
 This function is used to test argument completion.
 
 _
     args => {
+        arg0 => {
+            summary => 'Argument without any schema',
+        },
         i0 => {
-            schema => ['int*'],
+            summary => 'Integer with just "int" schema defined',
+            schema  => ['int*'],
         },
         i1 => {
-            schema => ['int*' => {min=>1, xmax=>100}],
+            summary => 'Integer with min/xmax on the schema',
+            schema  => ['int*' => {min=>1, xmax=>100}],
         },
         i2 => {
-            schema => ['int*' => {min=>1, max=>1000}],
+            summary => 'Integer with large range min/max on the schema',
+            schema  => ['int*' => {min=>1, max=>1000}],
         },
         f0 => {
-            schema => ['float*'],
+            summary => 'Float with just "float" schema defined',
+            schema  => ['float*'],
         },
         f1 => {
+            summary => 'Float with xmin/xmax on the schema',
             schema => ['float*' => {xmin=>1, xmax=>10}],
         },
         s1 => {
-            schema => [str => {
-                in=>[qw/apple apricot banana grape grapefruit/,
-                     "red date", "red grape", "green grape",
-                 ],
+            summary => 'String with possible values in "in" schema clause',
+            schema  => [str => {
+                in  => [qw/apple apricot banana grape grapefruit/,
+                        "red date", "red grape", "green grape",
+                    ],
             }],
         },
         s2 => {
-            schema => 'str',
+            summary => 'String with completion routine that generate random letter',
+            schema  => 'str',
             completion => sub {
                 my %args = @_;
                 my $word = $args{word} // "";
@@ -320,25 +330,32 @@ _
             },
         },
         s3 => {
-            schema => 'str',
+            summary => 'String with completion routine that dies',
+            schema  => 'str',
             completion => sub { die },
         },
         a1 => {
-            summary => 'For testing complete_arg_elem',
-            schema => [array => of => [str => {
+            summary => 'Array of strings, where the string has "in" schema clause',
+            schema  => [array => of => [str => {
                 in=>[qw/apple apricot banana grape grapefruit/,
                      "red date", "red grape", "green grape",
                  ],
             }]],
         },
         a2 => {
-            schema => ['array' => of => 'str'],
+            summary => 'Array with element_completion routine that generate random letter',
+            schema  => ['array' => of => 'str'],
             element_completion => sub {
                 my %args = @_;
                 my $word = $args{word} // "";
                 my $idx  = $args{index} // 0;
                 [ map {$word . $_ . $idx} "a".."z" ],
             },
+        },
+        a3 => {
+            summary => 'Array with element_completion routine that dies',
+            schema  => ['array' => of => 'str'],
+            element_completion => sub { die },
         },
     },
     features => {pure => 1},
