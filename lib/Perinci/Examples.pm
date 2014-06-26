@@ -320,6 +320,42 @@ _
                     ],
             }],
         },
+        s1b => {
+            summary => 'String with possible values in "in" schema clause, contains special characters',
+            description => <<'_',
+
+This argument is intended to test how special characters are escaped.
+
+_
+            schema  => [str => {
+                in  => [
+                    "space: ",
+                    "word containing spaces",
+                    "single-quote: '",
+                    'double-quote: "',
+                    'slash/',
+                    'back\\slash',
+                    "tab\t",
+                    "word:with:colon",
+                    "dollar \$sign",
+                    "various parenthesis: [ ] { } ( )",
+                    "tilde ~",
+                    'backtick `',
+                    'caret^',
+                    'at@',
+                    'pound#',
+                    'percent%',
+                    'ampersand&',
+                    'question?',
+                    'wildcard*',
+                    'comma,',
+                    'semicolon;',
+                    'pipe|',
+                    'redirection > <',
+                    'plus+',
+                ],
+            }],
+        },
         s2 => {
             summary => 'String with completion routine that generate random letter',
             schema  => 'str',
