@@ -5,8 +5,8 @@ use strict;
 use warnings;
 use Log::Any '$log';
 
-use Data::Clone;
 use List::Util qw(min max);
+use Perinci::Sub::Util qw(gen_modified_sub);
 use Scalar::Util qw(looks_like_number);
 
 # VERSION
@@ -168,17 +168,21 @@ sub randlog {
     [200, "OK", "$n log message(s) produced"];
 }
 
-$SPEC{call_randlog} = clone($SPEC{randlog});
-$SPEC{call_randlog}{summary} = 'Call randlog()';
-$SPEC{call_randlog}{description} = <<'_';
+gen_modified_sub(
+    output_name  => 'call_randlog',
+    base_name    => 'randlog',
+    summary      => 'Call randlog()',
+    description  => <<'_',
 
 This is to test nested call (e.g. Log::Any::For::Package).
 
 _
-sub call_randlog {
-    # NO_VALIDATE_ARGS
-    randlog(@_);
-}
+    output_code => sub {
+        # SUB: call_randlog
+        # NO_VALIDATE_ARGS
+        randlog(@_);
+    },
+);
 
 $SPEC{gen_array} = {
     v => 1.1,
@@ -213,17 +217,21 @@ sub gen_array {
     [200, "OK", $array];
 }
 
-$SPEC{call_gen_array} = clone($SPEC{gen_array});
-$SPEC{call_gen_array}{summary} = 'Call gen_array()';
-$SPEC{call_gen_array}{description} = <<'_';
+gen_modified_sub(
+    output_name  => 'call_gen_array',
+    base_name    => 'gen_array',
+    summary      => 'Call gen_array()',
+    description  => <<'_',
 
 This is to test nested call (e.g. Log::Any::For::Package).
 
 _
-sub call_gen_array {
-    # NO_VALIDATE_ARGS
-    gen_array(@_);
-}
+    output_code  => sub {
+        # SUB: call_gen_array
+        # NO_VALIDATE_ARGS
+        gen_array(@_);
+    },
+);
 
 $SPEC{gen_hash} = {
     v => 1.1,
