@@ -629,7 +629,7 @@ $SPEC{test_common_opts} = {
         json    => { schema => 'bool' },
         yaml    => { schema => 'bool' },
         perl    => { schema => 'bool' },
-        subcommands => { schema => 'bool'  },
+        subcommands => { schema => 'str'  },
         cmd     => { schema => 'str'  },
 
         quiet   => { schema => 'bool' },
