@@ -617,6 +617,33 @@ sub return_args {
     [200, "OK", \%args];
 }
 
+$SPEC{test_common_opts} = {
+    v => 1.1,
+    summary => 'This function has arguments with the same name as Perinci::CmdLine common options',
+    args => {
+        help    => { schema => 'bool' },
+        format  => { schema => 'str'  },
+        format_options => { schema => 'str'  },
+        action  => { schema => 'str'  },
+        version => { schema => 'str'  },
+        json    => { schema => 'bool' },
+        yaml    => { schema => 'bool' },
+        perl    => { schema => 'bool' },
+        subcommands => { schema => 'bool'  },
+        cmd     => { schema => 'str'  },
+
+        quiet   => { schema => 'bool' },
+        verbose => { schema => 'bool' },
+        debug   => { schema => 'bool' },
+        trace   => { schema => 'bool' },
+        log_level => { schema => 'str' },
+    },
+};
+sub test_common_opts {
+    my %args = @_;
+    [200, "OK", \%args];
+}
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 __END__
