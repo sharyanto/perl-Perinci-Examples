@@ -5,8 +5,6 @@ use strict;
 use warnings;
 use experimental 'smartmatch';
 
-#use SHARYANTO::Complete::Util qw(complete_array);
-
 our %SPEC;
 
 # VERSION
