@@ -245,6 +245,7 @@ _
         pairs => {
             summary => 'Number of pairs',
             schema => ['int*' => {min => 0, max => 1000}],
+            default => 10,
             pos => 0,
         },
     },
