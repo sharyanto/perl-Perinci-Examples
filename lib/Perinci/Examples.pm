@@ -645,6 +645,61 @@ sub test_common_opts {
     [200, "OK", \%args];
 }
 
+# first written to test Perinci::CmdLine::Lite text formatting rules
+$SPEC{gen_sample_data} = {
+    v => 1.1,
+    summary => "Generate sample data of various form",
+    args => {
+        form => {
+            schema => ['str*' => in => [qw/undef scalar aos aoaos aohos
+                                           hos hohos/]],
+            req => 1,
+            pos => 0,
+        },
+    },
+    result => {
+    },
+};
+sub gen_sample_data {
+    my %args = @_;
+    my $form = $args{form};
+
+    my $data;
+    if ($form eq 'undef') {
+        $data = undef;
+    } elsif ($form eq 'scalar') {
+        $data = 'Sample data';
+    } elsif ($form eq 'aos') {
+        $data = [qw/one two three four five/];
+    } elsif ($form eq 'aoaos') {
+        $data = [[qw/This is the first row/],
+                 [qw/This is the second row/],
+                 [qw/The third row this is/]];
+    } elsif ($form eq 'aohos') {
+        $data = [
+            {field1=>11, field2=>12},
+            {field1=>21, field3=>23},
+            {field1=>31, field2=>32, field3=>33},
+            {field2=>42},
+        ];
+    } elsif ($form eq 'hos') {
+        $data = {
+            key => 1,
+            key2 => 2,
+            key3 => 3,
+            key4 => 4,
+            key5 => 5,
+        };
+    } elsif ($form eq 'hohos') {
+        $data = {
+            {hashid=>1, key=>1},
+            {hashid=>2, key2=>2},
+        };
+    }
+    [200, "OK", $data];
+}
+
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 __END__
