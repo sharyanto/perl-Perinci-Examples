@@ -374,8 +374,6 @@ _
                 my $word = $args{word} // "";
                 [ map {$word . $_} "a".."z" ],
             },
-            pos => 1,
-            greedy => 1,
         },
         s3 => {
             summary => 'String with completion routine that dies',
@@ -389,6 +387,8 @@ _
                      "red date", "red grape", "green grape",
                  ],
             }]],
+            pos => 1,
+            greedy => 1,
         },
         a2 => {
             summary => 'Array with element_completion routine that generate random letter',
