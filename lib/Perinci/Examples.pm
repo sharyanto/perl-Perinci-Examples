@@ -308,6 +308,7 @@ _
         i1 => {
             summary => 'Integer with min/xmax on the schema',
             schema  => ['int*' => {min=>1, xmax=>100}],
+            pos => 0,
         },
         i2 => {
             summary => 'Integer with large range min/max on the schema',
@@ -373,6 +374,8 @@ _
                 my $word = $args{word} // "";
                 [ map {$word . $_} "a".."z" ],
             },
+            pos => 1,
+            greedy => 1,
         },
         s3 => {
             summary => 'String with completion routine that dies',
