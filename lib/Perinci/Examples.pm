@@ -702,10 +702,60 @@ sub gen_sample_data {
     [200, "OK", $data];
 }
 
+$SPEC{test_args_as_array} = {
+    v => 1.1,
+    args_as => 'array',
+    args => {
+        a0 => { pos=>0, schema=>'str*' },
+        a1 => { pos=>1, schema=>'str*' },
+        a2 => { pos=>2, schema=>'str*' },
+    },
+};
+sub test_args_as_array {
+    [200, "OK", \@_];
+}
+
+$SPEC{test_args_as_arrayref} = {
+    v => 1.1,
+    args_as => 'arrayref',
+    args => {
+        a0 => { pos=>0, schema=>'str*' },
+        a1 => { pos=>1, schema=>'str*' },
+        a2 => { pos=>2, schema=>'str*' },
+    },
+};
+sub test_args_as_arrayref {
+    [200, "OK", $_[0]];
+}
+
+$SPEC{test_args_as_hashref} = {
+    v => 1.1,
+    args_as => 'hashref',
+    args => {
+        a0 => { schema=>'str*' },
+        a1 => { schema=>'str*' },
+    },
+};
+sub test_args_as_hashref {
+    my $args = shift;
+    [200, "OK", $args];
+}
+
+$SPEC{test_result_naked} = {
+    v => 1.1,
+    args => {
+        a0 => { schema=>'str*' },
+        a1 => { schema=>'str*' },
+    },
+    result_naked => 1,
+};
+sub test_result_naked {
+    my %args = @_;
+    \%args;
+}
 
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
-__END__
 
 =head1 SYNOPSIS
 
