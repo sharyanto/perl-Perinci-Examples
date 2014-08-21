@@ -754,6 +754,24 @@ sub test_result_naked {
     \%args;
 }
 
+$SPEC{test_dry_run} = {
+    v => 1.1,
+    summary => "Will return 'wet' if not run under dry run mode, or 'dry' if dry run",
+    args => {
+    },
+    features => {
+        dry_run => 1,
+    },
+};
+sub test_dry_run {
+    my %args = @_;
+    if ($args{-dry_run}) {
+        return [200, "OK", "dry"];
+    } else {
+        return [200, "OK", "wet"];
+    }
+}
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 
