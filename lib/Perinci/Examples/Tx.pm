@@ -19,7 +19,7 @@ $SPEC{check_state} = {
     summary => "Return 'check_state' if checking state, otherwise empty string",
     features => {tx=>{v=>2}, idempotent=>1},
 };
-sub tx {
+sub check_state {
     my %args = @_;
     [200, "OK", $args{-tx_action} eq 'check_state' ? "check_state" : ""];
 }
