@@ -36,6 +36,21 @@ sub result {
     [200, "OK", 0, {'cmdline.result'=>'false'}];
 }
 
+$SPEC{is_palindrome} = {
+    v => 1.1,
+    summary => 'Return true if string is palindrome',
+    args => {
+        str => {schema=>'str*', req=>1, pos=>0},
+    },
+};
+sub is_palindrome {
+    my %args = @_;
+    my $str = $args{str};
+    my $res = $str eq reverse($str);
+    [200, "OK", $res, {'cmdline.result'=>$res ?
+                           'Is palindrome' : 'Not palindrome'}];
+}
+
 $SPEC{default_format} = {
     v => 1.1,
     summary => 'Set cmdline.default_format json',
