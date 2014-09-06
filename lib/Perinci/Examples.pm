@@ -506,7 +506,7 @@ _
         schema => 'hash*',
     },
     features => {},
-    "_perinci.sub.wrapper.validate_args" => 0,
+    "x.perinci.sub.wrapper.disable_validate_args" => 1,
 };
 sub merge_hash {
     my %args = @_;
@@ -534,7 +534,7 @@ $SPEC{test_validate_args} = {
         schema => 'str*',
     },
     features => {},
-    "_perinci.sub.wrapper.validate_args" => 0,
+    "x.perinci.sub.wrapper.disable_validate_args" => 1,
 };
 sub test_validate_args {
     my %args = @_; # VALIDATE_ARGS
@@ -560,6 +560,7 @@ _
     },
 };
 sub undescribed_args {
+    # NO_VALIDATE_ARGS
     [200];
 }
 
@@ -593,7 +594,7 @@ _
     },
 };
 sub arg_default {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", join("\n", map { "$_=" . ($args{$_} // "") } (qw/a b c d/))];
 }
 
@@ -644,7 +645,7 @@ $SPEC{test_common_opts} = {
     },
 };
 sub test_common_opts {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", \%args];
 }
 
@@ -664,7 +665,7 @@ $SPEC{gen_sample_data} = {
     },
 };
 sub gen_sample_data {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     my $form = $args{form};
 
     my $data;
@@ -712,6 +713,7 @@ $SPEC{test_args_as_array} = {
     },
 };
 sub test_args_as_array {
+    # NO_VALIDATE_ARGS
     [200, "OK", \@_];
 }
 
@@ -725,6 +727,7 @@ $SPEC{test_args_as_arrayref} = {
     },
 };
 sub test_args_as_arrayref {
+     # NO_VALIDATE_ARGS
     [200, "OK", $_[0]];
 }
 
@@ -737,7 +740,7 @@ $SPEC{test_args_as_hashref} = {
     },
 };
 sub test_args_as_hashref {
-    my $args = shift;
+    my $args = shift; # NO_VALIDATE_ARGS
     [200, "OK", $args];
 }
 
@@ -750,7 +753,7 @@ $SPEC{test_result_naked} = {
     result_naked => 1,
 };
 sub test_result_naked {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     \%args;
 }
 
@@ -764,7 +767,7 @@ $SPEC{test_dry_run} = {
     },
 };
 sub test_dry_run {
-    my %args = @_;
+    my %args = @_; # NO_VALIDATE_ARGS
     if ($args{-dry_run}) {
         return [200, "OK", "dry"];
     } else {
