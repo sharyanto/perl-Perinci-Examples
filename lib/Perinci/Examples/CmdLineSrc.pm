@@ -112,5 +112,37 @@ sub cmdline_src_multi_stdin {
     [200, "OK", "a1=$args{a1}\na2=$args{a2}"];
 }
 
+$SPEC{cmdline_src_stdin_line} = {
+    v => 1.1,
+    summary => 'This function has a single stdin_line argument',
+    args => {
+        a1 => {schema=>'str*', req=>1, cmdline_src=>'stdin_line'},
+        a2 => {schema=>'str*', req=>1},
+    },
+};
+sub cmdline_src_stdin_line {
+    my %args = @_;
+    [200, "OK", "a1=$args{a1}\na2=$args{a2}"];
+}
+
+$SPEC{cmdline_src_multi_stdin_line} = {
+    v => 1.1,
+    summary => 'This function has several stdin_line arguments',
+    description => <<'_',
+
+And one also has its is_password property set to true.
+
+_
+    args => {
+        a1 => {schema=>'str*', req=>1, cmdline_src=>'stdin_line'},
+        a2 => {schema=>'str*', req=>1, cmdline_src=>'stdin_line', is_password=>1},
+        a3 => {schema=>'str*', req=>1},
+    },
+};
+sub cmdline_src_multi_stdin_line {
+    my %args = @_;
+    [200, "OK", "a1=$args{a1}\na2=$args{a2}\na3=$args{a3}"];
+}
+
 1;
 # ABSTRACT: Examples for using cmdline_src function property
