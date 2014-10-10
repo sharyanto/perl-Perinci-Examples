@@ -775,6 +775,32 @@ sub test_dry_run {
     }
 }
 
+$SPEC{test_arg_submeta} = {
+    v => 1.1,
+    summary => 'Return its arguments',
+    args => {
+        a => {schema=>'str*'},
+        b => {schema=>'str*'},
+        c => {
+            schema => 'hash*',
+            meta => {
+                v => 1.1,
+                args => {
+                    a => {schema=>'str*'},
+                    b => {schema=>'str*'},
+                },
+            },
+        },
+    },
+    features => {
+        dry_run => 1,
+    },
+};
+sub test_arg_submeta {
+    my %args = @_; # NO_VALIDATE_ARGS
+    [200, "OK", \%args];
+}
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 
