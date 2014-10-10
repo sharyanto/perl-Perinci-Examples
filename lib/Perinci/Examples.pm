@@ -792,11 +792,32 @@ $SPEC{test_arg_submeta} = {
             },
         },
     },
-    features => {
-        dry_run => 1,
-    },
 };
 sub test_arg_submeta {
+    my %args = @_; # NO_VALIDATE_ARGS
+    [200, "OK", \%args];
+}
+
+$SPEC{test_arg_elem_submeta} = {
+    v => 1.1,
+    summary => 'Return its arguments',
+    args => {
+        child => {
+            schema => 'array*',
+            element_meta => {
+                v => 1.1,
+                args => {
+                    name => {schema=>'str*'},
+                    age  => {schema=>['int*', min=>0, max=>99]},
+                },
+                blood_type => {
+                    name => {schema=>['str*', in=>[qw/A B O AB/]]},
+                },
+            },
+        },
+    },
+};
+sub test_arg_elem_submeta {
     my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", \%args];
 }
