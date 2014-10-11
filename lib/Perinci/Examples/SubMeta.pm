@@ -119,10 +119,10 @@ _
                         req=>1,
                         pos=>1,
                         cmdline_aliases=>{
-                            M      => {schema=>[bool=>is=>1], code=>sub { $_[0]{gender} = 'M'}},
-                            male   => {schema=>[bool=>is=>1], code=>sub { $_[0]{gender} = 'M'}},
-                            F      => {schema=>[bool=>is=>1], code=>sub { $_[0]{gender} = 'F'}},
-                            female => {schema=>[bool=>is=>1], code=>sub { $_[0]{gender} = 'F'}},
+                            M      => {is_flag=>1, code=>sub { $_[0]{gender} = 'M'}},
+                            male   => {is_flag=>1, code=>sub { $_[0]{gender} = 'M'}},
+                            F      => {is_flag=>1, code=>sub { $_[0]{gender} = 'F'}},
+                            female => {is_flag=>1, code=>sub { $_[0]{gender} = 'F'}},
                         },
                     },
                     age => {
