@@ -775,6 +775,22 @@ sub test_dry_run {
     }
 }
 
+$SPEC{test_binary} = {
+    v => 1.1,
+    summary => "Accept and send binary data",
+    args => {
+        data => {schema=>"buf*"},
+    },
+    result => {
+        schema => "buf*",
+    },
+};
+sub test_binary {
+    my %args = @_; # NO_VALIDATE_ARGS
+    my $data = $args{data} // "\0\0\0";
+    return [200, "OK", $data];
+}
+
 1;
 # ABSTRACT: Example modules containing metadata and various example functions
 
