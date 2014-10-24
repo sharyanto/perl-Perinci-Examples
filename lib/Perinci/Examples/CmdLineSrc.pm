@@ -144,5 +144,32 @@ sub cmdline_src_multi_stdin_line {
     [200, "OK", "a1=$args{a1}\na2=$args{a2}\na3=$args{a3}"];
 }
 
+$SPEC{test_binary} = {
+    v => 1.1,
+    summary => "Accept binary in stdin/file",
+    description => <<'_',
+
+This function is like the one in `Perinci::Examples` but argument is accepted
+via `stdin_or_files`.
+
+_
+    args => {
+        data => {
+            schema  => "buf*",
+            pos     => 0,
+            default => "\0\0\0",
+            cmdline_src => "stdin_or_files",
+        },
+    },
+    result => {
+        schema => "buf*",
+    },
+};
+sub test_binary {
+    my %args = @_; # NO_VALIDATE_ARGS
+    my $data = $args{data} // "\0\0\0";
+    return [200, "OK", $data];
+}
+
 1;
 # ABSTRACT: Examples for using cmdline_src function property
