@@ -122,6 +122,7 @@ _
         code => {
             summary => 'Error code to return',
             schema => ['int' => {default => 500}],
+            pos => 0,
         },
     },
 };
