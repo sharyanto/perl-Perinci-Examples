@@ -9,6 +9,7 @@ use warnings;
 use Log::Any '$log';
 
 use List::Util qw(min max);
+use Perinci::Object;
 use Perinci::Sub::Util qw(gen_modified_sub);
 use Scalar::Util qw(looks_like_number);
 
@@ -984,6 +985,32 @@ sub gen_random_bytes {
     my %args = @_; # VALIDATE_ARGS
     my $len = $args{len} // 1024;
     [200, "OK", join("", map {chr(256*rand())} 1..$len)];
+}
+
+$SPEC{multi_status} = {
+    v => 1.1,
+    summary => "Example for result metadata property `results`",
+    description => <<'_',
+
+This function might return 200, 207, or 500, randomly. It will set result
+metadata property `results` to contain per-item results. For more details, see
+the corresponding specification in `results` property in `Rinci::resmeta`.
+
+_
+    args => {
+        n => {default=>5},
+    },
+};
+sub multi_status {
+    my %args = @_; # VALIDATE_ARGS
+    my $res = envresmulti();
+
+    for (1..$args{n}) {
+        my $status  = [200,500]->[2*rand];
+        my $message = $status == 200 ? "OK" : "Failed";
+        $res->add_result($status, $message, {item_id=>$_});
+    }
+    $res->as_struct;
 }
 
 1;
