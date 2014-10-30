@@ -1,4 +1,4 @@
-package Perinci::Examples::File;
+package Perinci::Examples::FilePartial;
 
 # DATE
 # VERSION
@@ -16,8 +16,8 @@ $SPEC{':package'} = {
     summary => 'Examples for reading/writing files',
     description => <<'_',
 
-These functions support partial argument (`partial_arg` feature) and partial
-result (`partial_res` feature). It also demos handling binary data
+The functions in this package demoes partial content upload as well as partial
+result.
 
 The functions are separated into this module because these functions read/write
 files on the filesystem and might potentially be dangerous if
@@ -31,8 +31,7 @@ $SPEC{read_file} = {
     args => {
         path => {schema=>'str*', req=>1, pos=>0},
     },
-    features => {partial_res=>1},
-    result => {schema=>'buf*'},
+    result => {schema=>'buf*', partial=>1},
 };
 sub read_file {
     my %args = @_; # VALIDATE_ARGS
@@ -57,7 +56,7 @@ sub read_file {
     [$is_partial ? 206 : 200,
      $is_partial ? "Partial content" : "OK (whole content)",
      $data,
-     {res_part_start=>$start, res_part_len=>$len}];
+     {len=>$size, part_start=>$start, part_len=>$len}];
 }
 
 $SPEC{write_file} = {
@@ -67,13 +66,13 @@ $SPEC{write_file} = {
         content => {schema=>'buf*', req=>1, pos=>1, partial=>1,
                     cmdline_src=>'stdin_or_files'},
     },
-    features => {partial_arg=>1},
 };
 sub write_file {
     my %args = @_; # VALIDATE_ARGS
 
     my $path = $args{path};
-    my $start = $args{"-arg_part_start/content"} // 0;
+    my $start = $args{"-arg_part_start"} // 0;
+    my $size  = $args{"-arg_len"} // 0;
 
     sysopen my($fh), $path, O_WRONLY | O_CREAT
         or return [500, "Can't open '$path' for writing: $!"];
@@ -89,10 +88,8 @@ $SPEC{append_file} = {
     v => 1.1,
     description => <<'_',
 
-We don't set the `content` argument as `partial` because it's actually hard to
-handle unordered/non-contiguous partial arguments if we open the file in append
-mode. We'll need to put the whole argument to temporary file first, and then
-append that temporary file to the target file.
+This function doesn't actually accept partial content, because by nature it is
+already a partial/incremental operation.
 
 _
     args => {
@@ -115,5 +112,4 @@ sub append_file {
 }
 
 1;
-# ABSTRACT: Examples for reading/writing files (demos partial_arg/partial_res)
-
+# ABSTRACT: Examples for reading/writing files (demos partial argument/result)
