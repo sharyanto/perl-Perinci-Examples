@@ -1,4 +1,4 @@
-package Perinci::Examples::FilePartial;
+package Perinci::Examples::FileStream;
 
 # DATE
 # VERSION
