@@ -23,6 +23,9 @@ The functions are separated into this module because these functions read/write
 files on the filesystem and might potentially be dangerous if
 `Perinci::Examples` is exposed to the network by accident.
 
+See also `Perinci::Examples::FileStream` which uses streaming instead of
+partial.
+
 _
 };
 
