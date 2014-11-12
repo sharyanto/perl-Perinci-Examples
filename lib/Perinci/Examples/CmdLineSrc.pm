@@ -47,7 +47,7 @@ $SPEC{cmdline_src_stdin_str} = {
 };
 sub cmdline_src_stdin_str {
     my %args = @_;
-    [200, "OK", "a1=$args{a1}"];
+    [200, "OK", "a1=$args{a1}", {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_stdin_array} = {
@@ -59,7 +59,8 @@ $SPEC{cmdline_src_stdin_array} = {
 };
 sub cmdline_src_stdin_array {
     my %args = @_;
-    [200, "OK", "a1=[".join(",",@{ $args{a1} })."]"];
+    [200, "OK", "a1=[".join(",",@{ $args{a1} })."]",
+     {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_file} = {
@@ -72,7 +73,8 @@ $SPEC{cmdline_src_file} = {
 };
 sub cmdline_src_file {
     my %args = @_;
-    [200, "OK", "a1=$args{a1}\na2=[".join(",", @{ $args{a2} // [] })."]"];
+    [200, "OK", "a1=$args{a1}\na2=[".join(",", @{ $args{a2} // [] })."]",
+     {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_stdin_or_files_str} = {
@@ -84,7 +86,7 @@ $SPEC{cmdline_src_stdin_or_files_str} = {
 };
 sub cmdline_src_stdin_or_files_str {
     my %args = @_;
-    [200, "OK", "a1=$args{a1}"];
+    [200, "OK", "a1=$args{a1}", {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_stdin_or_files_array} = {
@@ -96,7 +98,7 @@ $SPEC{cmdline_src_stdin_or_files_array} = {
 };
 sub cmdline_src_stdin_or_files_array {
     my %args = @_;
-    [200, "OK", "a1=[".join(",",@{ $args{a1} })."]"];
+    [200, "OK", "a1=[".join(",",@{ $args{a1} })."]", {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_multi_stdin} = {
@@ -109,7 +111,7 @@ $SPEC{cmdline_src_multi_stdin} = {
 };
 sub cmdline_src_multi_stdin {
     my %args = @_;
-    [200, "OK", "a1=$args{a1}\na2=$args{a2}"];
+    [200, "OK", "a1=$args{a1}\na2=$args{a2}", {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_stdin_line} = {
@@ -141,7 +143,8 @@ _
 };
 sub cmdline_src_multi_stdin_line {
     my %args = @_;
-    [200, "OK", "a1=$args{a1}\na2=$args{a2}\na3=$args{a3}"];
+    [200, "OK", "a1=$args{a1}\na2=$args{a2}\na3=$args{a3}",
+     {'func.args'=>\%args}];
 }
 
 $SPEC{test_binary} = {
@@ -168,7 +171,7 @@ _
 sub test_binary {
     my %args = @_; # NO_VALIDATE_ARGS
     my $data = $args{data} // "\0\0\0";
-    return [200, "OK", $data];
+    return [200, "OK", $data, {'func.args'=>\%args}];
 }
 
 1;
