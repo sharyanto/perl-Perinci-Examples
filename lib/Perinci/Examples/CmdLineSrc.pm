@@ -124,7 +124,7 @@ $SPEC{cmdline_src_stdin_line} = {
 };
 sub cmdline_src_stdin_line {
     my %args = @_;
-    [200, "OK", "a1=$args{a1}\na2=$args{a2}"];
+    [200, "OK", "a1=$args{a1}\na2=$args{a2}", {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_multi_stdin_line} = {
