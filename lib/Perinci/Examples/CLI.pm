@@ -98,6 +98,18 @@ negative summary in the `summary.alt.neg` attribute instead of the normal
 
 _
         },
+        full2 => {
+            summary => 'Use full processing (2)',
+            schema => ['bool', default=>1],
+            tags => ['category:cat2'],
+            description => <<'_',
+
+Another bool option with on default. Because this option does not have
+`summary.alt.neg`, CLI framework should not show any summary, despite the
+existence of `summary`.
+
+_
+        },
         int1 => {
             # without any summary, required
             schema => ['int*', min=>1, max=>100],
@@ -132,7 +144,6 @@ _
             summary => 'This demonstrate negation of '.
                 '--are-foo to --arent-foo',
             schema => 'bool*',
-            default => 1,
             tags => ['category:negation'],
         },
         array1 => {
