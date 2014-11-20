@@ -113,11 +113,13 @@ _
         pass => {
             schema => 'str*',
             is_password => 1,
+            cmdline_aliases => {p=>{}},
         },
         with_foo => {
             summary => 'This demonstrate negation of '.
                 '--with-foo to --without-foo',
             schema => 'bool*',
+            cmdline_aliases => {wf=>{}},
             tags => ['category:negation'],
         },
         is_bar => {
