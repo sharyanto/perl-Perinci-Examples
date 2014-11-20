@@ -116,6 +116,10 @@ _
             cmdline_aliases => {i=>{}},
             req => 1,
         },
+        int1 => {
+            schema => ['int*', min=>-100, max=>100],
+            default => 10,
+        },
         str1 => {
             summary => 'A required option as well as positional argument',
             schema => 'str*',
