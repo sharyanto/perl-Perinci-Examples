@@ -115,10 +115,21 @@ _
             schema => ['int*', min=>1, max=>100],
             cmdline_aliases => {i=>{}},
             req => 1,
+            description => <<'_',
+
+Demonstrate an option with no summary. And a required option.
+
+_
         },
-        int1 => {
+        int2 => {
+            summary => 'Another int option',
             schema => ['int*', min=>-100, max=>100],
             default => 10,
+            description => <<'_',
+
+Demonstrate a scalar/simple default value.
+
+_
         },
         str1 => {
             summary => 'A required option as well as positional argument',
