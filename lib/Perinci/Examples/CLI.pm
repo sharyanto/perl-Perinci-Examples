@@ -24,12 +24,12 @@ section).
 _
 };
 
-$SPEC{funcname} = {
+$SPEC{demo_cli_opts} = {
     v => 1.1,
-    summary => "Summary for `funcname`",
+    summary => "Summary for `demo_cli_opts`",
     description => <<'_',
 
-Description for `funcname`.
+Description for `demo_cli_opts`.
 
 This is another paragraph from the description. Description by default is
 assumed to be marked up in *Markdown* (currently referring to CommonMark).
@@ -247,7 +247,7 @@ _
         },
     ],
 };
-sub funcname {
+sub demo_cli_opts {
     my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", \%args];
 }
