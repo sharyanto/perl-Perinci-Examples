@@ -238,10 +238,12 @@ _
         {
             argv => ['--int1', '10', 'a value', 'elem1', 'elem2'],
             summary => 'Summary for an example',
+            test => 0,
         },
         {
             argv => ['--int1', '20', '--str1', 'x', '--array1-json', '[1,2]'],
             summary => 'A second example',
+            test => 0,
         },
     ],
 };
