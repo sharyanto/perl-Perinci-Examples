@@ -83,7 +83,7 @@ _
 
         full => {
             summary => 'Turn on full processing',
-            'summary.alt.neg' => 'Turn off full processing',
+            'summary.alt.bool.not' => 'Turn off full processing',
             schema => 'bool',
             default => 1,
             tags => ['category:cat1'],
@@ -93,7 +93,7 @@ Another bool option with on default.
 
 CLI framework should perhaps show `--nobool2` instead of `--bool2` because
 `--bool2` is active by default. And if it does so, it should also show the
-negative summary in the `summary.alt.neg` attribute instead of the normal
+negative summary in the `summary.alt.bool.not` attribute instead of the normal
 `summary` property.
 
 _
@@ -105,7 +105,7 @@ _
             description => <<'_',
 
 Another bool option with on default. Because this option does not have
-`summary.alt.neg`, CLI framework should not show any summary, despite the
+`summary.alt.bool.not`, CLI framework should not show any summary, despite the
 existence of `summary`.
 
 _
@@ -162,7 +162,8 @@ _
             tags => ['category:negation'],
         },
         array1 => {
-            summary => 'Positional and greedy',
+            summary => 'Positional, greedy, and plural',
+            'summary.alt.numnoun.singular' => 'Positional, greedy, and singular',
             schema => ['array*', of => 'str*'],
             req => 1,
             pos => 1,
