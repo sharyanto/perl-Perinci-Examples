@@ -268,8 +268,48 @@ sub demo_cli_opts {
     [200, "OK", \%args];
 }
 
+# Originally used in Perinci::Sub::To::CLIDocData's Synopsis
+$SPEC{demo_cli_opts_shorter} = {
+    v => 1.1,
+    summary => "Function summary",
+    args => {
+        flag1 => {
+            schema  => [bool => is=>1],
+            cmdline_aliases => {f=>{}},
+            tags => ['category:cat1'],
+        },
+        bool1 => {
+            summary => 'Another bool option',
+            schema => 'bool',
+            cmdline_aliases => {
+                z => {
+                    summary => 'This is summary for option `-z`',
+                },
+            },
+            tags => ['category:cat1'],
+        },
+        str1 => {
+            summary => 'A required option as well as positional argument',
+            schema => 'str*',
+            req => 1,
+            pos => 0,
+        },
+    },
+    examples => [
+        {
+            argv => ['a value', '--bool1'],
+            summary => 'Summary for an example',
+            test => 0,
+        },
+    ],
+};
+sub demo_cli_opts_shorter {
+    my %args = @_; # NO_VALIDATE_ARGS
+    [200, "OK", \%args];
+}
+
 1;
-# ABSTRACT: Example for CLI help/usage generation
+# ABSTRACT: Examples for CLI help/usage generation
 
 =head1 TODO
 
