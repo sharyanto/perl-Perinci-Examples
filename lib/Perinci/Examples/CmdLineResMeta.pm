@@ -74,4 +74,4 @@ sub skip_format {
 }
 
 1;
-# ABSTRACT: Functions in this package contains cmdline.* result metadata
+# ABSTRACT:

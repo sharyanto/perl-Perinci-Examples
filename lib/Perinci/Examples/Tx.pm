@@ -25,4 +25,4 @@ sub check_state {
 }
 
 1;
-# ABSTRACT: Examples for using transaction
+# ABSTRACT:

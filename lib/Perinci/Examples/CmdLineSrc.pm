@@ -175,4 +175,4 @@ sub test_binary {
 }
 
 1;
-# ABSTRACT: Examples for using cmdline_src function property
+# ABSTRACT:

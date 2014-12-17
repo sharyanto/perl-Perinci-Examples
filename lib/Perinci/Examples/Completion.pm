@@ -1,5 +1,8 @@
 package Perinci::Examples::Completion;
 
+# DATE
+# VERSION
+
 use 5.010;
 use strict;
 use warnings;
@@ -7,8 +10,10 @@ use experimental 'smartmatch';
 
 our %SPEC;
 
-# VERSION
-# DATE
+$SPEC{':package'} = {
+    v => 1.1,
+    summary => 'More completion examples',
+};
 
 $SPEC{fruits} = {
     v => 1.1,
@@ -42,6 +47,6 @@ sub fruits {
 }
 
 1;
-#ABSTRACT: More completion examples
+#ABSTRACT:
 
 =for Pod::Coverage .*

@@ -153,4 +153,4 @@ sub register_donors {
 }
 
 1;
-# ABSTRACT: Test argument submetadata
+# ABSTRACT:

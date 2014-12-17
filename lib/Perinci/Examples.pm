@@ -24,8 +24,8 @@ our %SPEC;
 # package metadata
 $SPEC{':package'} = {
     v => 1.1,
-    summary => 'This package contains various examples',
-    "summary.alt.lang.id_ID" => 'Paket ini berisi berbagai contoh',
+    summary => 'Various examples of Rinci metadata',
+    "summary.alt.lang.id_ID" => 'Berbagai contoh metadata Rinci',
     description => <<'_',
 
 A sample description
@@ -1014,7 +1014,7 @@ sub multi_status {
 }
 
 1;
-# ABSTRACT: Example modules containing metadata and various example functions
+# ABSTRACT:
 
 =head1 SYNOPSIS
 

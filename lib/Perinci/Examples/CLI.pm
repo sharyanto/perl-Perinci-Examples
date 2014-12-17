@@ -309,7 +309,7 @@ sub demo_cli_opts_shorter {
 }
 
 1;
-# ABSTRACT: Examples for CLI help/usage generation
+# ABSTRACT:
 
 =head1 TODO
 

@@ -1,5 +1,8 @@
 package Perinci::Examples::NoMeta;
 
+# DATE
+# VERSION
+
 # This is a sample of a "traditional" Perl module, with no metadata or enveloped
 # result.
 
@@ -8,9 +11,6 @@ use strict;
 use warnings;
 
 our $Var1 = 1;
-
-# VERSION
-# DATE
 
 sub pyth($$) {
     my ($a, $b) = @_;

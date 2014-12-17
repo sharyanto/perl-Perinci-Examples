@@ -13,7 +13,7 @@ our %SPEC;
 
 $SPEC{':package'} = {
     v => 1.1,
-    summary => 'Examples for reading/writing files',
+    summary => 'Examples for reading/writing files (demos partial argument/result)',
     description => <<'_',
 
 The functions in this package demoes partial content upload as well as partial
@@ -115,4 +115,4 @@ sub append_file {
 }
 
 1;
-# ABSTRACT: Examples for reading/writing files (demos partial argument/result)
+# ABSTRACT:
