@@ -311,15 +311,6 @@ sub demo_cli_opts_shorter {
 1;
 # ABSTRACT:
 
-=head1 TODO
-
-Argument submetadata and element submetadata.
-
-C<stream> property.
-
-C<partial> property.
-
-
 =head1 SEE ALSO
 
 L<Perinci>
