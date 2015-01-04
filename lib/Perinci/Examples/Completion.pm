@@ -48,7 +48,7 @@ $SPEC{fruits} = {
     },
     description => <<'_',
 
-Demonstrates completion of array elements, with description for each .
+Demonstrates completion of array elements, with description for each word.
 
 _
 };
