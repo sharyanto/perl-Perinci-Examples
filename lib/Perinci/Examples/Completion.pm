@@ -22,12 +22,22 @@ $SPEC{fruits} = {
             schema => [array => of => 'str'],
             element_completion => sub {
                 my %args = @_;
+                my $word = $args{word} // '';
+
                 # complete with unmentioned fruits
-                my @allfruits = qw(apple apricot banana cherry durian);
+                my %allfruits = (
+                    apple => "One a day of this and you keep the doctor away",
+                    apricot => "Another fruit that starts with the letter A",
+                    banana => "A tropical fruit",
+                    cherry => "Often found on cakes or drinks",
+                    durian => "Lots of people hate this, but it's popular in Asia",
+                );
                 my $ary = $args{args}{fruits};
                 my $res = [];
-                for (@allfruits) {
-                    push @$res, $_ unless $_ ~~ @$ary;
+                for (keys %allfruits) {
+                    next unless /\A\Q$word\E/i;
+                    push @$res, {word=>$_, description=>$allfruits{$_}}
+                        unless $_ ~~ @$ary;
                 }
                 $res;
             },
@@ -38,7 +48,7 @@ $SPEC{fruits} = {
     },
     description => <<'_',
 
-Demonstrates completion of array elements.
+Demonstrates completion of array elements, with description for each .
 
 _
 };
