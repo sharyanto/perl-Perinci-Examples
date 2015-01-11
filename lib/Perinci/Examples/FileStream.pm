@@ -16,7 +16,7 @@ $SPEC{':package'} = {
     summary => 'Examples for reading/writing files (using streaming result)',
     description => <<'_',
 
-The functions in this package demos streaming input and output.
+The functions in this package demo streaming input and output.
 
 The functions are separated into this module because these functions read/write
 files on the filesystem and might potentially be dangerous if
