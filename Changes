@@ -1,5 +1,11 @@
 Revision history for Perinci-Examples
 
+0.47    2015-01-17 (PERLANCAR)
+
+        - Update to Rinci 1.1.71: FileStream now uses coderef for streaming
+          input/output instead of filehandle.
+
+
 0.46    2015-01-11 (PERLANCAR)
 
 	- No functional changes.
