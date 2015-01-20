@@ -22,29 +22,50 @@ _
 $SPEC{nat} = {
     v => 1.1,
     summary => 'This function produces a stream of natural numbers',
-    args => {},
+    args => {
+        num => {
+            schema => 'int*',
+            cmdline_aliases => {n=>{}},
+        },
+    },
     result => {
         stream => 1,
         schema => 'int*',
     },
 };
 sub nat {
+    my %args = @_;
     my $i = 1;
-    [200, "OK", sub { $i++ }];
+    my $num = $args{num};
+    [200, "OK", sub {
+         return undef if defined($num) && $i > $num;
+         $i++;
+     }];
 }
 
 $SPEC{hash_stream} = {
     v => 1.1,
     summary => 'This function produces a stream of hashes',
-    args => {},
+    args => {
+        num => {
+            schema => 'int*',
+            cmdline_aliases => {n=>{}},
+        },
+    },
     result => {
         stream => 1,
         schema => 'hash*',
     },
 };
 sub hash_stream {
+    my %args = @_;
+    my $num = $args{num};
+
     my $i = 1;
-    [200, "OK", sub { {num=>$i++} }];
+    [200, "OK", sub {
+         return undef if defined($num) && $i > $num;
+         {num=>$i++};
+     }];
 }
 
 $SPEC{square_input} = {
