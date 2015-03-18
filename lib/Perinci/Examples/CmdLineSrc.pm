@@ -77,6 +77,30 @@ sub cmdline_src_file {
      {'func.args'=>\%args}];
 }
 
+$SPEC{cmdline_src_stdin_or_file_str} = {
+    v => 1.1,
+    summary => 'This function has str arg with cmdline_src=stdin_or_file',
+    args => {
+        a1 => {schema=>'str*', cmdline_src=>'stdin_or_file'},
+    },
+};
+sub cmdline_src_stdin_or_file_str {
+    my %args = @_;
+    [200, "OK", "a1=$args{a1}", {'func.args'=>\%args}];
+}
+
+$SPEC{cmdline_src_stdin_or_file_array} = {
+    v => 1.1,
+    summary => 'This function has array arg with cmdline_src=stdin_or_file',
+    args => {
+        a1 => {schema=>'array*', cmdline_src=>'stdin_or_file'},
+    },
+};
+sub cmdline_src_stdin_or_file_array {
+    my %args = @_;
+    [200, "OK", "a1=[".join(",",@{ $args{a1} })."]", {'func.args'=>\%args}];
+}
+
 $SPEC{cmdline_src_stdin_or_files_str} = {
     v => 1.1,
     summary => 'This function has str arg with cmdline_src=stdin_or_files',
