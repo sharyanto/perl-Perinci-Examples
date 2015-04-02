@@ -1,5 +1,13 @@
 Revision history for Perinci-Examples
 
+0.51    2015-04-02 (PERLANCAR)
+
+	- Adjust to DefHash 1.0.9 (rename alt.numnoun.* ->
+	  alt.plurality.*).
+
+	- [doc] Some rewording of description, remove Synopsis.
+
+
 0.50    2015-03-18 (PERLANCAR)
 
 	- Add examples for cmdline_src=stdin_or_file.
