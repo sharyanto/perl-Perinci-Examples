@@ -163,7 +163,7 @@ _
         },
         array1 => {
             summary => 'Positional, greedy, and plural',
-            'summary.alt.numnoun.singular' => 'Positional, greedy, and singular',
+            'summary.alt.plurality.singular' => 'Positional, greedy, and singular',
             schema => ['array*', of => 'str*'],
             req => 1,
             pos => 1,
