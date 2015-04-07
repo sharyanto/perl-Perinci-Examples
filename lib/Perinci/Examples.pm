@@ -303,6 +303,54 @@ sub noop {
     [200, "OK", $args{arg}];
 }
 
+$SPEC{noop2} = {
+    v => 1.1,
+    summary => "Just like noop, but accepts several arguments",
+    description => <<'_',
+
+Will return arguments passed to it.
+
+This function is also marked as `pure`, meaning it will not cause any side
+effects. Pure functions are safe to call directly in a transaction (without
+going through the transaction manager) or during dry-run mode.
+
+_
+    args => {
+        a => {
+            summary => 'Argument',
+            schema => ['any'],
+            pos => 0,
+        },
+        b => {
+            summary => 'Argument',
+            schema => ['any'],
+            pos => 1,
+        },
+        c => {
+            summary => 'Argument',
+            schema => ['any'],
+            pos => 2,
+        },
+        d => {
+            summary => 'Argument',
+            schema => ['any'],
+            pos => 3,
+        },
+        e => {
+            summary => 'Argument',
+            schema => ['any'],
+            pos => 4,
+        },
+    },
+    features => {pure => 1},
+};
+
+sub noop2 {
+    no warnings 'uninitialized';
+    my %args = @_; # NO_VALIDATE_ARGS
+    [200, "OK", "a=$args{a}\nb=$args{b}\nc=$args{c}\nd=$args{d}\ne=$args{e}"];
+}
+
 $SPEC{test_completion} = {
     v => 1.1,
     summary => "Do nothing, return args",
