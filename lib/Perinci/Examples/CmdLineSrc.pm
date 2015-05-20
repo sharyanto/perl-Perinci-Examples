@@ -65,7 +65,7 @@ sub cmdline_src_stdin_array {
 
 $SPEC{cmdline_src_file} = {
     v => 1.1,
-    summary => 'This function has args with cmdline_src _file',
+    summary => 'This function has args with cmdline_src=file',
     args => {
         a1 => {schema=>'str*', req=>1, cmdline_src=>'file'},
         a2 => {schema=>'array*', cmdline_src=>'file'},
