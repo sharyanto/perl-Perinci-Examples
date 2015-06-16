@@ -1,0 +1,20 @@
+#!/usr/bin/env perl
+
+# DATE
+# VERSION
+
+use 5.010001;
+use strict;
+use warnings;
+use FindBin '$Bin';
+
+use Benchmark::Command;
+
+Benchmark::Command::run(
+    undef,
+    {
+        'none'                    => [$^X, "-I$Bin/../lib", "-e1"],
+        'Perinci::Examples'       => [$^X, "-I$Bin/../lib", "-e", "use Perinci::Examples;"],
+        'Perinci::Examples::Tiny' => [$^X, "-I$Bin/../lib", "-e", "use Perinci::Examples::Tiny;"],
+    },
+);
