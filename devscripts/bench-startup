@@ -14,7 +14,8 @@ Benchmark::Command::run(
     undef,
     {
         'none'                    => [$^X, "-I$Bin/../lib", "-e1"],
-        'Perinci::Examples'       => [$^X, "-I$Bin/../lib", "-e", "use Perinci::Examples;"],
         'Perinci::Examples::Tiny' => [$^X, "-I$Bin/../lib", "-e", "use Perinci::Examples::Tiny;"],
+        'Perinci::Examples::CLI'  => [$^X, "-I$Bin/../lib", "-e", "use Perinci::Examples::CLI;"],
+        'Perinci::Examples'       => [$^X, "-I$Bin/../lib", "-e", "use Perinci::Examples;"],
     },
 );
