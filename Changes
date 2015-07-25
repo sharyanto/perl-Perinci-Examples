@@ -1,5 +1,12 @@
 Revision history for Perinci-Examples
 
+0.55    2015-07-25 (PERLANCAR)
+
+	- Add module: Perinci::Examples::Version to demonstrate Riap
+	  package metadata which contains entity_v that is different from
+	  package $VERSION.
+
+
 0.54    2015-06-16 (PERLANCAR)
 
 	- Add devscripts/bench-startup.
