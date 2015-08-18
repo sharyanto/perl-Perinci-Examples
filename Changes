@@ -1,5 +1,12 @@
 Revision history for Perinci-Examples
 
+0.56    2015-08-18 (PERLANCAR)
+
+	- No functional changes.
+
+	- Switch from Log::Any to Log::Any::IfLOG.
+
+
 0.55    2015-07-25 (PERLANCAR)
 
 	- Add module: Perinci::Examples::Version to demonstrate Riap
