@@ -1,5 +1,10 @@
 Revision history for Perinci-Examples
 
+0.58    2015-09-03 (PERLANCAR)
+
+	- Update x.schema.entity name (file -> filename).
+
+
 0.57    2015-09-03 (PERLANCAR)
 
 	- No functional changes.
