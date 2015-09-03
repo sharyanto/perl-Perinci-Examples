@@ -222,7 +222,7 @@ _
         output => {
             summary => 'Specify output filename',
             schema => 'str*',
-            "x.schema.entity" => "file",
+            "x.schema.entity" => "filename",
             description => <<'_',
 
 This option demonstrates how the option would be displayed in the help/usage.
