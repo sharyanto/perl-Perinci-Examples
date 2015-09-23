@@ -30,6 +30,27 @@ sub has_dot_args {
     [200, "OK", $args{'a.number'} * $args{'another.number'}];
 }
 
+# this Rinci metadata is already normalized
+$SPEC{has_date_arg} = {
+    v => 1.1,
+    summary => "This function contains a date argument",
+    args => {
+        'date' => {
+            schema => ['date', {req=>1}, {}],
+            pos => 0,
+            req => 1,
+        },
+    },
+};
+sub has_date_arg {
+    my %args = @_;
+    my $date = $args{date};
+    [200, "OK", {
+        "ref(value)" => ref($date),
+        "value (stringified)" => "$date",
+    }];
+}
+
 1;
 # ABSTRACT: Tests related to function arguments
 
