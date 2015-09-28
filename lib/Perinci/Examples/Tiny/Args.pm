@@ -6,6 +6,21 @@ package Perinci::Examples::Tiny::Args;
 our %SPEC;
 
 # this Rinci metadata is already normalized
+$SPEC{as_is} = {
+    v => 1.1,
+    summary => "This function returns the argument as-is",
+    args => {
+        'arg' => {
+            schema => ['any',{},{}],
+        },
+    },
+};
+sub as_is {
+    my %args = @_;
+    [200, "OK", $args{arg}];
+}
+
+# this Rinci metadata is already normalized
 $SPEC{has_dot_args} = {
     v => 1.1,
     summary => "This function contains arguments with dot in their names",
