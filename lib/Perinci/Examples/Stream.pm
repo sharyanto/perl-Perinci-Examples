@@ -96,6 +96,69 @@ sub square_input {
      }];
 }
 
+$SPEC{square_input_from_file} = {
+    v => 1.1,
+    summary => 'This function squares its stream input',
+    args => {
+        input => {
+            req => 1,
+            pos => 0,
+            stream => 1,
+            schema => 'float*',
+            cmdline_src => 'file',
+        },
+    },
+    result => {
+        stream => 1,
+        schema => 'float*',
+    },
+};
+sub square_input_from_file {
+    goto &square_input;
+}
+
+$SPEC{square_input_from_stdin} = {
+    v => 1.1,
+    summary => 'This function squares its stream input',
+    args => {
+        input => {
+            req => 1,
+            pos => 0,
+            stream => 1,
+            schema => 'float*',
+            cmdline_src => 'stdin',
+        },
+    },
+    result => {
+        stream => 1,
+        schema => 'float*',
+    },
+};
+sub square_input_from_stdin {
+    goto &square_input;
+}
+
+$SPEC{square_input_from_stdin_or_file} = {
+    v => 1.1,
+    summary => 'This function squares its stream input',
+    args => {
+        input => {
+            req => 1,
+            pos => 0,
+            stream => 1,
+            schema => 'float*',
+            cmdline_src => 'stdin_or_file',
+        },
+    },
+    result => {
+        stream => 1,
+        schema => 'float*',
+    },
+};
+sub square_input_from_stdin_or_file {
+    goto &square_input;
+}
+
 $SPEC{wc} = {
     v => 1.1,
     summary => 'Count the number of lines/words/characters of input, like the "wc" command',
