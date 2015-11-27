@@ -1,5 +1,13 @@
 Revision history for Perinci-Examples
 
+0.62    2015-11-27 (PERLANCAR)
+
+	- Add module: Perinci::Examples::CSV.
+
+	- Add more input streaming examples: square_input_from_stdin,
+	  square_input_from_stdin_or_file, square_input_from_file.
+
+
 0.61    2015-09-29 (PERLANCAR)
 
 	- Add function: ::Tiny::Args::as_is.
