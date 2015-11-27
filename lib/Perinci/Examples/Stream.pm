@@ -24,6 +24,7 @@ $SPEC{nat} = {
     summary => 'This function produces a stream of natural numbers',
     args => {
         num => {
+            summary => 'Limit number of numbers to produce',
             schema => 'int*',
             cmdline_aliases => {n=>{}},
         },
