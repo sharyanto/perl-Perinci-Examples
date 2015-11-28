@@ -15,6 +15,16 @@ sub noop {
 }
 
 # this Rinci metadata is already normalized
+$SPEC{hello_naked} = {
+    v => 1.1,
+    summary => "Hello world",
+    result_naked => 1,
+};
+sub hello_naked {
+    "Hello, world";
+}
+
+# this Rinci metadata is already normalized
 $SPEC{odd_even} = {
     v => 1.1,
     summary => "Print 'odd' or 'even' depending on the number",
