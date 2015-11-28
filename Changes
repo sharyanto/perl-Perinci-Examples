@@ -1,5 +1,10 @@
 Revision history for Perinci-Examples
 
+0.63    2015-11-28 (PERLANCAR)
+
+        - Add function: Tiny::hello_naked.
+
+
 0.62    2015-11-27 (PERLANCAR)
 
 	- Add module: Perinci::Examples::CSV.
