@@ -25,6 +25,7 @@ sub aoaos {
          [qw/deden 27 actor/],],
         {
             'table.fields' => [qw/name age occupation/],
+            'table.field_units' => [undef, 'year'],
         },
     ];
 }
@@ -45,6 +46,7 @@ sub aohos {
          {name=>'deden', age=>27, occupation=>'actor', note=>'x'},],
         {
             'table.fields' => [qw/name age occupation/],
+            'table.field_units' => [undef, 'year'],
             'table.hide_unknown_fields' => 1,
         },
     ];
