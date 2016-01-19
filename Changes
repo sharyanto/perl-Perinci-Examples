@@ -1,5 +1,12 @@
 Revision history for Perinci-Examples
 
+0.64    2016-01-19 (PERLANCAR)
+
+	- Add module: Perinci::Examples::Table.
+
+	- Bump prereq version Log::Any::IfLOG to 0.07.
+
+
 0.63    2015-11-28 (PERLANCAR)
 
         - Add function: Tiny::hello_naked.
