@@ -551,12 +551,14 @@ _
         {
             summary => 'First example',
             args    => {array=>[1, 2, 3]},
-            result  => [200, "OK", 6],
+            status  => 200,
+            result  => 6,
         },
         {
             summary => 'Second example, using argv',
             argv    => [qw/--round 1.1 2.1 3.1/],
-            result  => [200, "OK", 6],
+            status  => 200,
+            result  => 6,
         },
         {
             summary => 'Third example, invalid arguments',
