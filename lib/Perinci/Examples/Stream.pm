@@ -171,7 +171,7 @@ $SPEC{wc} = {
         },
     },
     result => {
-        schema => 'str*',
+        schema => 'hash*',
     },
 };
 sub wc {
@@ -205,7 +205,7 @@ _
         },
     },
     result => {
-        schema => 'str*',
+        schema => 'hash*',
     },
 };
 sub wc_keys {
