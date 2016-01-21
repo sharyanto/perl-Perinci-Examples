@@ -44,6 +44,61 @@ sub nat {
      }];
 }
 
+$SPEC{word} = {
+    v => 1.1,
+    summary => 'This function produces a stream of random words',
+    args => {
+        num => {
+            summary => 'Limit number of words to produce',
+            schema => 'int*',
+            cmdline_aliases => {n=>{}},
+        },
+    },
+    result => {
+        stream => 1,
+        schema => ['str*', match=>'\A\w+\z'],
+    },
+};
+sub word {
+    my %args = @_;
+    my $i = 1;
+    my $num = $args{num};
+    [200, "OK", sub {
+         return undef if defined($num) && $i > $num;
+         $i++;
+         join('', map { ['a'..'z']->[26*rand()] } 1..(int(6*rand)+5));
+     }];
+}
+
+$SPEC{word_err} = {
+    v => 1.1,
+    summary => 'Like word(), but 1 in every 10 words will be a non-word (which fails result schema)',
+    args => {
+        num => {
+            summary => 'Limit number of words to produce',
+            schema => 'int*',
+            cmdline_aliases => {n=>{}},
+        },
+    },
+    result => {
+        stream => 1,
+        schema => ['str*', match=>'\A\w+\z'],
+    },
+};
+sub word_err {
+    my %args = @_;
+    my $i = 1;
+    my $num = $args{num};
+    [200, "OK", sub {
+         return undef if defined($num) && $i > $num;
+         if ($i++ % 10 == 0) {
+             "contain space";
+         } else {
+             join('', map { ['a'..'z']->[26*rand()] } 1..(int(6*rand)+5));
+         }
+     }];
+}
+
 $SPEC{hash_stream} = {
     v => 1.1,
     summary => 'This function produces a stream of hashes',
