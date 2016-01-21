@@ -99,6 +99,33 @@ sub word_err {
      }];
 }
 
+$SPEC{num_words} = {
+    v => 1.1,
+    summary => 'This function receives a stream of words and return the number of words',
+    description => <<'_',
+
+Input validation will check that each record from the stream is a word.
+
+_
+    args => {
+        words => {
+            schema => ['str*', match=>'\A\w+\z'],
+            stream => 1,
+            cmdline_src => 'stdin_or_files',
+        },
+    },
+};
+sub num_words {
+    my %args = @_;
+
+    my $words = $args{words};
+    my $num = 0;
+    while (defined($words->())) {
+        $num++;
+    }
+    [200, "OK", $num];
+}
+
 $SPEC{hash_stream} = {
     v => 1.1,
     summary => 'This function produces a stream of hashes',
