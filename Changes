@@ -1,8 +1,15 @@
 Revision history for Perinci-Examples
 
+0.67    2016-01-22 (PERLANCAR)
+
+	- Add function: Stream::num_words to test validation of streaming
+          output.
+
+
 0.66    2016-01-22 (PERLANCAR)
 
-	- Add functions: Stream::word, Stream::word_err.
+	- Add functions: Stream::word, Stream::word_err to test validation of
+          streaming output.
 
 
 0.65    2016-01-20 (PERLANCAR)
