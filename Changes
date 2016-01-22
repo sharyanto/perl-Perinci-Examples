@@ -1,5 +1,10 @@
 Revision history for Perinci-Examples
 
+0.68    2016-01-22 (PERLANCAR)
+
+	- [Incompatible change] Rename functions to make them clearer.
+
+
 0.67    2016-01-22 (PERLANCAR)
 
 	- Add function: Stream::num_words to test validation of streaming
