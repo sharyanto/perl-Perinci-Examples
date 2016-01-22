@@ -59,6 +59,7 @@ $SPEC{count_ints} = {
         input => {
             summary => 'Number',
             schema => 'int*',
+            stream => 1,
             cmdline_src => 'stdin_or_files',
         },
     },
@@ -69,6 +70,27 @@ sub count_ints {
     my $n = 0;
     $n++ while defined $input->();
     [200, "OK", "You input $n int(s)"];
+}
+
+$SPEC{count_lines} = {
+    v => 1.1,
+    summary => 'Count number of lines in the input',
+    tags => ['category:streaming-input'],
+    args => {
+        input => {
+            summary => 'Input',
+            schema => 'str*',
+            stream => 1,
+            cmdline_src => 'stdin_or_files',
+        },
+    },
+};
+sub count_lines {
+    my %args = @_;
+    my $input = $args{input};
+    my $n = 0;
+    $n++ while defined $input->();
+    [200, "OK", "Input is $n line(s)"];
 }
 
 $SPEC{produce_words} = {
