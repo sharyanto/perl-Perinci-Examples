@@ -19,14 +19,21 @@ This package contains functions that demonstrate streaming input/output.
 _
 };
 
-$SPEC{nat} = {
+$SPEC{produce_ints} = {
     v => 1.1,
-    summary => 'This function produces a stream of natural numbers',
+    summary => 'This function produces a stream of integers, starting from 1',
+    tags => ['category:streaming-result'],
     args => {
         num => {
             summary => 'Limit number of numbers to produce',
+            description => <<'_',
+
+The default is to produce an infinite number.
+
+_
             schema => 'int*',
             cmdline_aliases => {n=>{}},
+            pos => 0,
         },
     },
     result => {
@@ -34,7 +41,7 @@ $SPEC{nat} = {
         schema => 'int*',
     },
 };
-sub nat {
+sub produce_ints {
     my %args = @_;
     my $i = 1;
     my $num = $args{num};
@@ -44,14 +51,36 @@ sub nat {
      }];
 }
 
-$SPEC{word} = {
+$SPEC{count_ints} = {
+    v => 1.1,
+    summary => 'This function accepts a stream of integers and return the number of integers input',
+    tags => ['category:streaming-input'],
+    args => {
+        input => {
+            summary => 'Number',
+            schema => 'int*',
+            cmdline_src => 'stdin_or_files',
+        },
+    },
+};
+sub count_ints {
+    my %args = @_;
+    my $input = $args{input};
+    my $n = 0;
+    $n++ while defined $input->();
+    [200, "OK", "You input $n int(s)"];
+}
+
+$SPEC{produce_words} = {
     v => 1.1,
     summary => 'This function produces a stream of random words',
+    tags => ['category:streaming-result'],
     args => {
         num => {
             summary => 'Limit number of words to produce',
             schema => 'int*',
             cmdline_aliases => {n=>{}},
+            pos => 0,
         },
     },
     result => {
@@ -59,7 +88,7 @@ $SPEC{word} = {
         schema => ['str*', match=>'\A\w+\z'],
     },
 };
-sub word {
+sub produce_words {
     my %args = @_;
     my $i = 1;
     my $num = $args{num};
@@ -70,9 +99,10 @@ sub word {
      }];
 }
 
-$SPEC{word_err} = {
+$SPEC{produce_words_err} = {
     v => 1.1,
-    summary => 'Like word(), but 1 in every 10 words will be a non-word (which fails result schema)',
+    summary => 'Like `produce_words()`, but 1 in every 10 words will be a non-word (which fails the result schema)',
+    tags => ['categoryr:streaming-result'],
     args => {
         num => {
             summary => 'Limit number of words to produce',
@@ -85,7 +115,7 @@ $SPEC{word_err} = {
         schema => ['str*', match=>'\A\w+\z'],
     },
 };
-sub word_err {
+sub produce_words_err {
     my %args = @_;
     my $i = 1;
     my $num = $args{num};
@@ -99,9 +129,10 @@ sub word_err {
      }];
 }
 
-$SPEC{num_words} = {
+$SPEC{count_words} = {
     v => 1.1,
     summary => 'This function receives a stream of words and return the number of words',
+    tags => ['category:streaming-input'],
     description => <<'_',
 
 Input validation will check that each record from the stream is a word.
@@ -115,7 +146,7 @@ _
         },
     },
 };
-sub num_words {
+sub count_words {
     my %args = @_;
 
     my $words = $args{words};
@@ -126,13 +157,14 @@ sub num_words {
     [200, "OK", $num];
 }
 
-$SPEC{hash_stream} = {
+$SPEC{produce_hashes} = {
     v => 1.1,
     summary => 'This function produces a stream of hashes',
     args => {
         num => {
             schema => 'int*',
             cmdline_aliases => {n=>{}},
+            pos => 0,
         },
     },
     result => {
@@ -140,7 +172,7 @@ $SPEC{hash_stream} = {
         schema => 'hash*',
     },
 };
-sub hash_stream {
+sub produce_hashes {
     my %args = @_;
     my $num = $args{num};
 
@@ -151,9 +183,10 @@ sub hash_stream {
      }];
 }
 
-$SPEC{square_input} = {
+$SPEC{square_nums} = {
     v => 1.1,
     summary => 'This function squares its stream input',
+    tags => ['category:streaming-input', 'category:streaming-result'],
     args => {
         input => {
             req => 1,
@@ -167,7 +200,7 @@ $SPEC{square_input} = {
         schema => 'float*',
     },
 };
-sub square_input {
+sub square_nums {
     my %args = @_;
     my $input = $args{input};
 
@@ -178,9 +211,10 @@ sub square_input {
      }];
 }
 
-$SPEC{square_input_from_file} = {
+$SPEC{square_nums_from_file} = {
     v => 1.1,
     summary => 'This function squares its stream input',
+    tags => ['category:streaming-input', 'category:streaming-result'],
     args => {
         input => {
             req => 1,
@@ -195,13 +229,14 @@ $SPEC{square_input_from_file} = {
         schema => 'float*',
     },
 };
-sub square_input_from_file {
+sub square_nums_from_file {
     goto &square_input;
 }
 
-$SPEC{square_input_from_stdin} = {
+$SPEC{square_nums_from_stdin} = {
     v => 1.1,
     summary => 'This function squares its stream input',
+    tags => ['category:streaming-input', 'category:streaming-result'],
     args => {
         input => {
             req => 1,
@@ -216,13 +251,14 @@ $SPEC{square_input_from_stdin} = {
         schema => 'float*',
     },
 };
-sub square_input_from_stdin {
+sub square_nums_from_stdin {
     goto &square_input;
 }
 
-$SPEC{square_input_from_stdin_or_file} = {
+$SPEC{square_nums_from_stdin_or_file} = {
     v => 1.1,
     summary => 'This function squares its stream input',
+    tags => ['category:streaming-input', 'category:streaming-result'],
     args => {
         input => {
             req => 1,
@@ -237,19 +273,21 @@ $SPEC{square_input_from_stdin_or_file} = {
         schema => 'float*',
     },
 };
-sub square_input_from_stdin_or_file {
+sub square_nums_from_stdin_or_file {
     goto &square_input;
 }
 
 $SPEC{wc} = {
     v => 1.1,
     summary => 'Count the number of lines/words/characters of input, like the "wc" command',
+    tags => ['category:streaming-input'],
     args => {
         input => {
             req => 1,
             stream => 1,
             schema => 'str*',
             cmdline_src => 'stdin_or_files',
+            'cmdline.chomp' => 0,
         },
     },
     result => {
@@ -272,6 +310,7 @@ sub wc {
 $SPEC{wc_keys} = {
     v => 1.1,
     summary => 'Count the number of keys of each hash',
+    tags => ['category:streaming-input'],
     description => <<'_',
 
 This is a simple demonstration of accepting a stream of hashes. In command-line
