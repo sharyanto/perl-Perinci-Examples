@@ -19,26 +19,30 @@ This package contains functions that demonstrate streaming input/output.
 _
 };
 
+my %arg_num = (
+    num => {
+        summary => 'Limit number of entries to produce',
+        description => <<'_',
+
+The default is to produce an infinite number.
+
+_
+        schema => ['int*', min=>0],
+        cmdline_aliases => {n=>{}},
+        pos => 0,
+    },
+);
+
 $SPEC{produce_ints} = {
     v => 1.1,
     summary => 'This function produces a stream of integers, starting from 1',
     tags => ['category:streaming-result'],
     args => {
-        num => {
-            summary => 'Limit number of numbers to produce',
-            description => <<'_',
-
-The default is to produce an infinite number.
-
-_
-            schema => 'int*',
-            cmdline_aliases => {n=>{}},
-            pos => 0,
-        },
+        %arg_num,
     },
     result => {
         stream => 1,
-        schema => 'int*',
+        schema => ['array*', of=>'int*'],
     },
 };
 sub produce_ints {
@@ -57,8 +61,8 @@ $SPEC{count_ints} = {
     tags => ['category:streaming-input'],
     args => {
         input => {
-            summary => 'Number',
-            schema => 'int*',
+            summary => 'Numbers',
+            schema => ['array*', of=>'int*'],
             stream => 1,
             cmdline_src => 'stdin_or_files',
         },
@@ -69,7 +73,7 @@ sub count_ints {
     my $input = $args{input};
     my $n = 0;
     $n++ while defined $input->();
-    [200, "OK", "You input $n int(s)"];
+    [200, "OK", $n];
 }
 
 $SPEC{count_lines} = {
@@ -78,8 +82,8 @@ $SPEC{count_lines} = {
     tags => ['category:streaming-input'],
     args => {
         input => {
-            summary => 'Input',
-            schema => 'str*',
+            summary => 'Lines',
+            schema => ['array*', of=>'str*'],
             stream => 1,
             cmdline_src => 'stdin_or_files',
         },
@@ -98,16 +102,11 @@ $SPEC{produce_words} = {
     summary => 'This function produces a stream of random words',
     tags => ['category:streaming-result'],
     args => {
-        num => {
-            summary => 'Limit number of words to produce',
-            schema => 'int*',
-            cmdline_aliases => {n=>{}},
-            pos => 0,
-        },
+        %arg_num,
     },
     result => {
         stream => 1,
-        schema => ['str*', match=>'\A\w+\z'],
+        schema => ['array*', of=>['str*', match=>'\A\w+\z']],
     },
 };
 sub produce_words {
@@ -126,15 +125,11 @@ $SPEC{produce_words_err} = {
     summary => 'Like `produce_words()`, but 1 in every 10 words will be a non-word (which fails the result schema)',
     tags => ['categoryr:streaming-result'],
     args => {
-        num => {
-            summary => 'Limit number of words to produce',
-            schema => 'int*',
-            cmdline_aliases => {n=>{}},
-        },
+        %arg_num,
     },
     result => {
         stream => 1,
-        schema => ['str*', match=>'\A\w+\z'],
+        schema => ['array*', of => ['str*', match=>'\A\w+\z']],
     },
 };
 sub produce_words_err {
@@ -161,8 +156,8 @@ Input validation will check that each record from the stream is a word.
 
 _
     args => {
-        words => {
-            schema => ['str*', match=>'\A\w+\z'],
+        input => {
+            schema => ['array*', of=>['str*', match=>'\A\w+\z']],
             stream => 1,
             cmdline_src => 'stdin_or_files',
         },
@@ -183,15 +178,11 @@ $SPEC{produce_hashes} = {
     v => 1.1,
     summary => 'This function produces a stream of hashes',
     args => {
-        num => {
-            schema => 'int*',
-            cmdline_aliases => {n=>{}},
-            pos => 0,
-        },
+        %arg_num,
     },
     result => {
         stream => 1,
-        schema => 'hash*',
+        schema => ['array*', of=>'hash*'],
     },
 };
 sub produce_hashes {
@@ -213,13 +204,13 @@ $SPEC{square_nums} = {
         input => {
             req => 1,
             stream => 1,
-            schema => 'float*',
+            schema => ['array*', of=>'float*'],
             cmdline_src => 'stdin_or_files',
         },
     },
     result => {
         stream => 1,
-        schema => 'float*',
+        schema => ['array*', of=>'float*'],
     },
 };
 sub square_nums {
@@ -242,13 +233,13 @@ $SPEC{square_nums_from_file} = {
             req => 1,
             pos => 0,
             stream => 1,
-            schema => 'float*',
+            schema => ['array*', of=>'float*'],
             cmdline_src => 'file',
         },
     },
     result => {
         stream => 1,
-        schema => 'float*',
+        schema => ['array*', of=>'float*'],
     },
 };
 sub square_nums_from_file {
@@ -264,13 +255,13 @@ $SPEC{square_nums_from_stdin} = {
             req => 1,
             pos => 0,
             stream => 1,
-            schema => 'float*',
+            schema => ['array*', of=>'float*'],
             cmdline_src => 'stdin',
         },
     },
     result => {
         stream => 1,
-        schema => 'float*',
+        schema => ['array*', of=>'float*'],
     },
 };
 sub square_nums_from_stdin {
@@ -292,7 +283,7 @@ $SPEC{square_nums_from_stdin_or_file} = {
     },
     result => {
         stream => 1,
-        schema => 'float*',
+        schema => ['array*', of=>'float*'],
     },
 };
 sub square_nums_from_stdin_or_file {
@@ -307,7 +298,7 @@ $SPEC{wc} = {
         input => {
             req => 1,
             stream => 1,
-            schema => 'str*',
+            schema => ['array*', of=>'str*'],
             cmdline_src => 'stdin_or_files',
             'cmdline.chomp' => 0,
         },
@@ -343,7 +334,7 @@ _
         input => {
             req => 1,
             stream => 1,
-            schema => 'hash*',
+            schema => ['array*', of=>'hash*'],
             cmdline_src => 'stdin_or_files',
         },
     },
