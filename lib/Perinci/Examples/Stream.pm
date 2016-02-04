@@ -166,9 +166,9 @@ _
 sub count_words {
     my %args = @_;
 
-    my $words = $args{words};
+    my $input = $args{input};
     my $num = 0;
-    while (defined($words->())) {
+    while (defined($input->())) {
         $num++;
     }
     [200, "OK", $num];
