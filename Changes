@@ -1,5 +1,10 @@
 Revision history for Perinci-Examples
 
+0.69    2016-02-04 (PERLANCAR)
+
+	- Stream: Fix schemas, all streams must be arrays.
+
+
 0.68    2016-01-22 (PERLANCAR)
 
 	- [Incompatible change] Rename functions to make them clearer.
