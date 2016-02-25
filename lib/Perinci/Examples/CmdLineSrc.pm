@@ -125,6 +125,18 @@ sub cmdline_src_stdin_or_files_array {
     [200, "OK", "a1=[".join(",",@{ $args{a1} })."]", {'func.args'=>\%args}];
 }
 
+$SPEC{cmdline_src_stdin_or_args_array} = {
+    v => 1.1,
+    summary => 'This function has array arg with cmdline_src=stdin_or_args',
+    args => {
+        a1 => {schema=>['array*', of=>'str*'], cmdline_src=>'stdin_or_args'},
+    },
+};
+sub cmdline_src_stdin_or_args_array {
+    my %args = @_;
+    [200, "OK", "a1=[".join(",",@{ $args{a1} })."]", {'func.args'=>\%args}];
+}
+
 $SPEC{cmdline_src_multi_stdin} = {
     v => 1.1,
     summary => 'This function has multiple args with cmdline_src stdin/stdin_or_files',
