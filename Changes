@@ -1,5 +1,10 @@
 Revision history for Perinci-Examples
 
+0.70    2016-02-26 (PERLANCAR)
+
+	- CmdLineSrc: Add example for cmdline_src=stdin_or_args (Rinci 1.1.79).
+
+
 0.69    2016-02-04 (PERLANCAR)
 
 	- Stream: Fix schemas, all streams must be arrays.
