@@ -1,5 +1,14 @@
 Revision history for Perinci-Examples
 
+0.71    2016-02-26 (PERLANCAR)
+
+        - Add modules: ArgsAs, ResultNaked.
+
+        - Delete devscripts/bench-startup (moved to
+          Bencher::Scenario::PerinciExamples::Startup in
+          Bencher-Scenarios-Perinci).
+
+
 0.70    2016-02-26 (PERLANCAR)
 
 	- CmdLineSrc: Add example for cmdline_src=stdin_or_args (Rinci 1.1.79).
