@@ -134,7 +134,7 @@ $SPEC{cmdline_src_stdin_or_args_array} = {
 };
 sub cmdline_src_stdin_or_args_array {
     my %args = @_;
-    [200, "OK", "a1=[".join(",",@{ $args{a1} })."]", {'func.args'=>\%args}];
+    [200, "OK", "a1=[".join(",",@{ $args{a1} // [] })."]", {'func.args'=>\%args}];
 }
 
 $SPEC{cmdline_src_multi_stdin} = {
