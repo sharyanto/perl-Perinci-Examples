@@ -14,10 +14,11 @@ $SPEC{coerce_to_epoch} = {
     summary => "Accept a date (e.g. '2015-11-20', etc), return its Unix epoch",
     args => {
         date => {
-            schema => 'date*',
+            schema => ['date*', {
+                'x.perl.coerce_to' => 'float(epoch)',
+            }],
             req => 1,
             pos => 0,
-            'x.perl.coerce_to' => 'int(epoch)',
         },
     },
 };
@@ -31,10 +32,11 @@ $SPEC{coerce_to_secs} = {
     summary => "Accept a duration (e.g. '2hour', 'P2D'), return number of seconds",
     args => {
         duration => {
-            schema => 'duration*',
+            schema => ['duration*', {
+                'x.perl.coerce_to' => 'float(secs)',
+            }],
             req => 1,
             pos => 0,
-            'x.perl.coerce_to' => 'int(secs)',
         },
     },
 };
