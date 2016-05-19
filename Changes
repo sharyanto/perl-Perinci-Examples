@@ -1,5 +1,12 @@
 Revision history for Perinci-Examples
 
+0.72    2016-05-20 (PERLANCAR)
+
+	- Update to Data::Sah 0.76+ and Perinci::CmdLine::Lite 1.55.
+
+	- Handle undef arg.
+
+
 0.71    2016-02-26 (PERLANCAR)
 
         - Add modules: ArgsAs, ResultNaked.
