@@ -92,6 +92,6 @@ sub has_duration_arg {
 
 =head1 DESCRIPTION
 
-Like th other Perinci::Examples::Tiny::*, this module does not use other modules
-and is suitable for testing Perinci::CmdLine::Inline as well as other
+Like the other Perinci::Examples::Tiny::*, this module does not use other
+modules and is suitable for testing Perinci::CmdLine::Inline as well as other
 Perinci::CmdLine frameworks.
