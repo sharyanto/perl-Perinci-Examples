@@ -87,6 +87,35 @@ sub has_duration_arg {
     }];
 }
 
+# this Rinci metadata is already normalized
+$SPEC{has_date_and_duration_args} = {
+    v => 1.1,
+    summary => "This function contains a date and a duration argument",
+    args => {
+        'date' => {
+            schema => ['date', {req=>1}, {}],
+            pos => 0,
+            req => 1,
+        },
+        'duration' => {
+            schema => ['duration', {req=>1}, {}],
+            pos => 1,
+            req => 1,
+        },
+    },
+};
+sub has_date_and_duration_args {
+    my %args = @_;
+    my $date = $args{date};
+    my $duration = $args{duration};
+    [200, "OK", {
+        "ref(date)" => ref($date),
+        "date (stringified)" => "$date",
+        "ref(duration)" => ref($duration),
+        "duration (stringified)" => "$duration",
+    }];
+}
+
 1;
 # ABSTRACT: Tests related to function arguments
 
