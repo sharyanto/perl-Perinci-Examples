@@ -1,5 +1,13 @@
 Revision history for Perinci-Examples
 
+0.73    2016-06-02 (PERLANCAR)
+
+        - Add functions: Tiny::Args::has_duration_arg,
+          Tiny::Args::has_date_and_duration_args.
+
+        - Add module: Tiny::Result.
+
+
 0.72    2016-05-20 (PERLANCAR)
 
 	- Update to Data::Sah 0.76+ and Perinci::CmdLine::Lite 1.55.
