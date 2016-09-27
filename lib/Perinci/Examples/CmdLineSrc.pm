@@ -188,7 +188,7 @@ $SPEC{test_binary} = {
     summary => "Accept binary in stdin/file",
     description => <<'_',
 
-This function is like the one in `Perinci::Examples` but argument is accepted
+This function is like the one in <pm:Perinci::Examples> but argument is accepted
 via `stdin_or_files`.
 
 _

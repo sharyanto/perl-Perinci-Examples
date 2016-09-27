@@ -377,7 +377,7 @@ _
             pos => 0,
             description => <<'_',
 
-A completion library (like `Perinci::Sub::Complete`) can generate a list of
+A completion library (like <pm:Perinci::Sub::Complete>) can generate a list of
 completion from the low end to the high end of the range, as long as it is not
 too long.
 
@@ -494,7 +494,7 @@ it will complete from any `in` value, but in:
 
 it can exclude `apple` from the completion candidate.
 
-Currently the completion library `Perinci::Sub::Complete` does not do this
+Currently the completion library <pm:Perinci::Sub::Complete> does not do this
 though. Perhaps there can be an option to toggle this behavior.
 
 _
@@ -599,11 +599,11 @@ $SPEC{merge_hash} = {
 This function can be used to test passing nonscalar (hash) arguments.
 
 This function also tests the `x.perinci.sub.wrapper.disable_validate_args`
-attribute so that `Perinci::Sub::Wrapper` does not generate argument validation
-code in the wrapper. Note that by adding `# VALIDATE_ARG` in the source code,
-the Dist::Zilla::Plugin::Rinci::Wrap already generates and embeds argument
-validation code in the source code, so duplication is not desired, thus the
-attribute.
+attribute so that <pm:Perinci::Sub::Wrapper> does not generate argument
+validation code in the wrapper. Note that by adding `# VALIDATE_ARG` in the
+source code, the <pm:Dist::Zilla::Plugin::Rinci::Wrap> plugin already generates
+and embeds argument validation code in the source code, so duplication is not
+desired, thus the attribute.
 
 _
     args => {
@@ -664,8 +664,8 @@ $SPEC{undescribed_args} = {
     summary => 'This function has several undescribed args',
     description => <<'_',
 
-Originally added to see how peri-func-usage or `Perinci::To::Text` will display
-the usage or documentation for this function.
+Originally added to see how peri-func-usage or <pm:Perinci::To::Text> will
+display the usage or documentation for this function.
 
 _
     args => {
@@ -790,7 +790,7 @@ $SPEC{gen_sample_data} = {
     summary => "Generate sample data of various form",
     description => <<'_',
 
-This function is first written to test `Perinci::CmdLine::Lite`'s text
+This function is first written to test <pm:Perinci::CmdLine::Lite>'s text
 formatting rules.
 
 _
@@ -922,8 +922,8 @@ $SPEC{test_result_naked} = {
 This function's metadata sets `result_naked` to true. This means function
 returns just the value (e.g. `42`) and not with envelope (e.g. `[200,"OK",42]`).
 However, when served over network Riap protocol, the function wrapper
-`Perinci::Sub::Wrapper` can generate an envelope for the result, so the wrapped
-function wil still return `[200,"OK",42]`.
+<pm:Perinci::Sub::Wrapper> can generate an envelope for the result, so the
+wrapped function wil still return `[200,"OK",42]`.
 
 _
     args => {
@@ -1040,7 +1040,7 @@ $SPEC{multi_status} = {
 
 This function might return 200, 207, or 500, randomly. It will set result
 metadata property `results` to contain per-item results. For more details, see
-the corresponding specification in `results` property in `Rinci::resmeta`.
+the corresponding specification in `results` property in <pod:Rinci::resmeta>.
 
 _
     args => {

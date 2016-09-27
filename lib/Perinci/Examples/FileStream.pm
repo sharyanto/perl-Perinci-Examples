@@ -20,10 +20,10 @@ The functions in this package demonstrate byte streaming of input and output.
 
 The functions are separated into this module because these functions read/write
 files on the filesystem and might potentially be dangerous if
-`Perinci::Examples` is exposed to the network by accident.
+<pm:Perinci::Examples> is exposed to the network by accident.
 
-See also `Perinci::Examples::FilePartial` which uses partial technique instead
-of streaming.
+See also <pm:Perinci::Examples::FilePartial> which uses partial technique
+instead of streaming.
 
 _
 };
@@ -39,12 +39,12 @@ $SPEC{read_file} = {
 This function demonstrate output streaming of bytes.
 
 To do output streaming, on the function side, you just return a coderef which
-can be called by caller (e.g. CLI framework `Perinci::CmdLine`) to read data
+can be called by caller (e.g. CLI framework <pm:Perinci::CmdLine>) to read data
 from. Code must return data or undef to signify exhaustion.
 
 This works over remote (HTTP) too, because output streaming is supported by
-`Riap::HTTP` (version 1.2) and `Perinci::Access::HTTP::Client`. Streams are
-translated into HTTP chunks.
+<pod:Riap::HTTP> (version 1.2) and <pm:Perinci::Access::HTTP::Client>. Streams
+are translated into HTTP chunks.
 
 _
 };
@@ -69,13 +69,13 @@ To do input streaming, on the function side, you just specify one your args with
 the `stream` property set to true (`stream => 1`). In this example, the
 `content` argument is set to streaming.
 
-If you run the function through `Perinci::CmdLine`, you'll get a coderef instead
-of the actual value. You can then repeatedly call the code to read data. This
-currently works for local functions only. As of this writing, `Riap::HTTP`
-protocol does not support input streaming. It supports partial input though (see
-the documentation on how this works) and theoretically streaming can be emulated
-by client library using partial input. However, client like
-`Perinci::Access::HTTP::Client` does not yet support this.
+If you run the function through <pm:Perinci::CmdLine>, you'll get a coderef
+instead of the actual value. You can then repeatedly call the code to read data.
+This currently works for local functions only. As of this writing,
+<pod:Riap::HTTP> protocol does not support input streaming. It supports partial
+input though (see the documentation on how this works) and theoretically
+streaming can be emulated by client library using partial input. However, client
+like <pm:Perinci::Access::HTTP::Client> does not yet support this.
 
 Note that the argument's schema is still `buf*`, not `code*`.
 
