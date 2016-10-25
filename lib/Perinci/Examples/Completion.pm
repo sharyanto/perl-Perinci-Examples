@@ -19,6 +19,7 @@ $SPEC{fruits} = {
     v => 1.1,
     args => {
         fruits => {
+            'x.name.is_plural' => 1,
             schema => [array => of => 'str'],
             element_completion => sub {
                 my %args = @_;
@@ -29,6 +30,7 @@ $SPEC{fruits} = {
                     apple => "One a day of this and you keep the doctor away",
                     apricot => "Another fruit that starts with the letter A",
                     banana => "A tropical fruit",
+                    "butternut squash" => "Popular among babies' parents", # contain space, description contains quote
                     cherry => "Often found on cakes or drinks",
                     durian => "Lots of people hate this, but it's popular in Asia",
                 );
