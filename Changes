@@ -1,5 +1,10 @@
 Revision history for Perinci-Examples
 
+0.74    2016-10-25 (PERLANCAR)
+
+	- Tweak Completion: add answer that contains space.
+
+
 0.73    2016-06-02 (PERLANCAR)
 
         - Add functions: Tiny::Args::has_duration_arg,
