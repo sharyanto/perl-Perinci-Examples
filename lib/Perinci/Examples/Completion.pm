@@ -55,7 +55,7 @@ Demonstrates completion of array elements, with description for each word.
 _
 };
 sub fruits {
-    [200];
+    [200, "OK", {@_}];
 }
 
 1;
