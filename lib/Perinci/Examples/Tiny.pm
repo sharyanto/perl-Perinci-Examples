@@ -27,7 +27,7 @@ sub hello_naked {
 # this Rinci metadata is already normalized
 $SPEC{odd_even} = {
     v => 1.1,
-    summary => "Print 'odd' or 'even' depending on the number",
+    summary => "Return 'odd' or 'even' depending on the number",
     args => {
         number => {
             summary => 'Number to test',
@@ -44,6 +44,38 @@ sub odd_even {
     my %args = @_;
     [200, "OK", $args{number} % 2 == 0 ? "even" : "odd"];
 }
+
+# this Rinci metadata is already normalized
+$SPEC{foo1} = {
+    v => 1.1,
+    summary => "Return the string 'foo1'",
+    args => {},
+};
+sub foo1 { [200, "OK", "foo1"] }
+
+# this Rinci metadata is already normalized
+$SPEC{foo2} = {
+    v => 1.1,
+    summary => "Return the string 'foo1'",
+    args => {},
+};
+sub foo2 { [200, "OK", "foo2"] }
+
+# this Rinci metadata is already normalized
+$SPEC{foo3} = {
+    v => 1.1,
+    summary => "Return the string 'foo1'",
+    args => {},
+};
+sub foo3 { [200, "OK", "foo3"] }
+
+# this Rinci metadata is already normalized
+$SPEC{foo4} = {
+    v => 1.1,
+    summary => "Return the string 'foo1'",
+    args => {},
+};
+sub foo4 { [200, "OK", "foo4"] }
 
 1;
 # ABSTRACT: Small examples
