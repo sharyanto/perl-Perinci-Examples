@@ -519,6 +519,27 @@ See also `s3`.
 
 _
         },
+        h1 => {
+            summary => 'Hash with "keys" and "allowed_keys" schema clauses and "element_completion" property',
+            schema  => ['hash', of=>'str', keys=>{k1=>"str", k2=>"str"}, allowed_keys=>[qw/k1 k2 k3 k4/]],
+            element_completion => sub {
+                my %args = @_;
+                my $word = $args{word} // "";
+                my $idx  = $args{index} // 0;
+                [ map {$word . $_ . $idx} "a".."z" ],
+            },
+        },
+        h2 => {
+            summary => 'Hash with "element_completion" as well as "index_completion" properties',
+            schema  => ['hash', of=>'str'],
+            index_completion => [qw/k1 k2 k3 k4 k5 k6/],
+            element_completion => sub {
+                my %args = @_;
+                my $word = $args{word} // "";
+                my $idx  = $args{index} // 0;
+                [ map {$word . $_ . $idx} "a".."z" ],
+            },
+        },
     },
 };
 sub test_completion {
