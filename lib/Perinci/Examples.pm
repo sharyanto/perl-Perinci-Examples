@@ -526,7 +526,7 @@ _
                 my %args = @_;
                 my $word = $args{word} // "";
                 my $idx  = $args{index} // 0;
-                [ map {$word . $_ . $idx} "a".."z" ],
+                [ map {$word . $_ . $idx} "a".."e" ],
             },
         },
         h2 => {
@@ -537,7 +537,7 @@ _
                 my %args = @_;
                 my $word = $args{word} // "";
                 my $idx  = $args{index} // 0;
-                [ map {$word . $_ . $idx} "a".."z" ],
+                [ map {$word . $_ . $idx} "a".."e" ],
             },
         },
     },
