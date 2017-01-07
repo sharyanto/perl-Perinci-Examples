@@ -1,5 +1,3 @@
-Revision history for Perinci-Examples
-
 0.77    2016-12-10 (PERLANCAR)
 
 	- test_completion(): Add arguments h1 & h2 to test completion of hash
