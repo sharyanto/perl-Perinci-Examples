@@ -1,3 +1,9 @@
+0.78    2017-01-12 (PERLANCAR)
+
+	- Perinci::Examples::Tiny: Add function sum() like in
+	  Perinci::Examples.
+
+
 0.77    2016-12-10 (PERLANCAR)
 
 	- test_completion(): Add arguments h1 & h2 to test completion of hash
