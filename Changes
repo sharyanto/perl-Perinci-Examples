@@ -1,3 +1,9 @@
+0.79    2017-01-12 (PERLANCAR)
+
+	- Perinci::Examples::Tiny: add function noop2() like in
+	  Perinci::Examples.
+
+
 0.78    2017-01-12 (PERLANCAR)
 
 	- Perinci::Examples::Tiny: Add function sum() like in
