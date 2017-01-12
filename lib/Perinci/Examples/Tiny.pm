@@ -77,6 +77,40 @@ $SPEC{foo4} = {
 };
 sub foo4 { [200, "OK", "foo4"] }
 
+# this Rinci metadata is already normalized
+$SPEC{sum} = {
+    v => 1.1,
+    summary => "Sum numbers in array",
+    description => <<'_',
+
+This function can be used to test passing nonscalar (array) arguments.
+
+_
+    args => {
+        array => {
+            summary => 'Array',
+            schema  => ['array', {req=>1, of => ['float', {req=>1}, {}]}, {}],
+            req     => 1,
+            pos     => 0,
+            greedy  => 1,
+        },
+        round => {
+            summary => 'Whether to round result to integer',
+            schema  => [bool => {default => 0}, {}],
+        },
+    },
+};
+sub sum {
+    my %args = @_;
+
+    my $sum = 0;
+    for (@{$args{array}}) {
+        $sum += $_ if defined && /\A(?:\d+(?:\.\d*)?|\.\d+)\z/;
+    }
+    $sum = int($sum) if $args{round};
+    [200, "OK", $sum];
+}
+
 1;
 # ABSTRACT: Small examples
 
