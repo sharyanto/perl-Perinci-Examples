@@ -6,7 +6,7 @@ package Perinci::Examples;
 use 5.010001;
 use strict;
 use warnings;
-use Log::Any::IfLOG '$log';
+use Log::ger;
 
 use List::Util qw(min max);
 use Perinci::Object;
@@ -160,6 +160,8 @@ _
     },
 };
 sub randlog {
+    no strict 'refs';
+
     my %args      = @_; # NO_VALIDATE_ARGS
     my $n         = $args{n} // 10;
     $n = 1000 if $n > 1000;
@@ -171,9 +173,10 @@ sub randlog {
     for my $i (1..$n) {
         my $num_level = int($min_level + rand()*($max_level-$min_level+1));
         my $str_level = $str_levels{$num_level};
-        $log->$str_level("($i/$n) This is random log message #$i, ".
-                             "level=$num_level ($str_level): ".
-                                 int(rand()*9000+1000));
+        my $logfunc = "log_$str_level";
+        &{$logfunc}("($i/$n) This is random log message #$i, ".
+                        "level=$num_level ($str_level): ".
+                        int(rand()*9000+1000));
     }
     [200, "OK", "$n log message(s) produced"];
 }
@@ -775,7 +778,7 @@ _
 };
 sub return_args {
     my %args = @_; # NO_VALIDATE_ARGS
-    $log->tracef("return_args() is called with arguments: %s", \%args);
+    log_trace("return_args() is called with arguments: %s", \%args);
     [200, "OK", \%args];
 }
 
