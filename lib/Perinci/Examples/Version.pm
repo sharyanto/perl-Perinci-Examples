@@ -11,6 +11,7 @@ $SPEC{':package'} = {
     entity_v => 9.99,
 };
 
+1;
 # ABSTRACT:
 
 =head1 DESCRIPTION
