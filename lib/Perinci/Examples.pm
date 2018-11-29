@@ -565,6 +565,7 @@ _
             req     => 1,
             pos     => 0,
             greedy  => 1,
+            examples => [[1,2,3], []],
         },
         round => {
             summary => 'Whether to round result to integer',
