@@ -302,7 +302,6 @@ _
     },
     features => {pure => 1},
 };
-
 sub noop {
     my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", $args{arg}];
@@ -349,7 +348,6 @@ _
     },
     features => {pure => 1},
 };
-
 sub noop2 {
     no warnings 'uninitialized';
     my %args = @_; # NO_VALIDATE_ARGS
@@ -1084,6 +1082,40 @@ sub multi_status {
         $res->add_result($status, $message, {item_id=>$_});
     }
     $res->as_struct;
+}
+
+$SPEC{comment_fruit} = {
+    v => 1.1,
+    summary => 'Comment on a fruit',
+    description => <<'_',
+
+This function demonstrate argument's `examples` property. It can be used to show
+choices (e.g. in argument completion) but does not require that value be one of
+the examples only.
+
+_
+    args => {
+        fruit => {
+            schema => 'str*',
+            examples => [
+                'apple',
+                'apricot',
+                'banana',
+                'cherry',
+                {value=>'durian', summary=>'Summary for durian'},
+            ],
+            req => 1,
+            pos => 0,
+        },
+    },
+};
+sub comment_fruit {
+    my %args = @_;
+    my $fruit = $args{fruit} // '';
+    [200, "OK",
+     $fruit =~ /\A(banana|pineapple)\z/i ?
+         "$fruit is probably yellow" :
+         "I don't know about $fruit"];
 }
 
 1;
