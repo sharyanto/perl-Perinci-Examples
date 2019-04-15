@@ -483,7 +483,7 @@ _
                  ],
             }]],
             pos => 1,
-            greedy => 1,
+            slurpy => 1,
             description => <<'_',
 
 Completion library can perhaps complete from the `in` value and remember
@@ -564,7 +564,7 @@ _
             schema  => ['array*', of => 'float*'],
             req     => 1,
             pos     => 0,
-            greedy  => 1,
+            slurpy  => 1,
             examples => [[1,2,3], []],
         },
         round => {

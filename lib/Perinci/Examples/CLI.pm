@@ -162,12 +162,12 @@ _
             tags => ['category:negation'],
         },
         array1 => {
-            summary => 'Positional, greedy, and plural',
-            'summary.alt.plurality.singular' => 'Positional, greedy, and singular',
+            summary => 'Positional, slurpy, and plural',
+            'summary.alt.plurality.singular' => 'Positional, slurpy, and singular',
             schema => ['array*', of => 'str*'],
             req => 1,
             pos => 1,
-            greedy => 1,
+            slurpy => 1,
             description => <<'_',
 
 Argument with non-scalar types (like array or hash) can be specified in the CLI

@@ -92,7 +92,7 @@ _
             schema  => ['array', {req=>1, of => ['float', {req=>1}, {}]}, {}],
             req     => 1,
             pos     => 0,
-            greedy  => 1,
+            slurpy  => 1,
         },
         round => {
             summary => 'Whether to round result to integer',

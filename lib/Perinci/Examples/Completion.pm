@@ -45,7 +45,7 @@ $SPEC{fruits} = {
             },
             #req => 1,
             pos => 0,
-            greedy => 1,
+            slurpy => 1,
         },
     },
     description => <<'_',
