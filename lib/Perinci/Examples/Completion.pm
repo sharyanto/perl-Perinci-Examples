@@ -47,6 +47,18 @@ $SPEC{fruits} = {
             pos => 0,
             slurpy => 1,
         },
+        animals => {
+            summary => 'This argument contains valid values and '.
+                'their summaries in the schema',
+            schema => ['str*' => {
+                in => [qw/flamingo frog rabbit/],
+                'x.in.summaries' => [
+                    "Aren't your foot tired?",
+                    "What if you don't turn after I kiss you?",
+                    "What's up doc?",
+                ],
+            }],
+        },
     },
     description => <<'_',
 
