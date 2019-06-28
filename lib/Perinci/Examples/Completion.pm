@@ -38,7 +38,7 @@ $SPEC{fruits} = {
                 my $res = [];
                 for (keys %allfruits) {
                     next unless /\A\Q$word\E/i;
-                    push @$res, {word=>$_, description=>$allfruits{$_}}
+                    push @$res, {word=>$_, summary=>$allfruits{$_}}
                         unless $_ ~~ @$ary;
                 }
                 $res;
