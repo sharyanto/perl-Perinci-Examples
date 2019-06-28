@@ -47,15 +47,16 @@ $SPEC{fruits} = {
             pos => 0,
             slurpy => 1,
         },
-        animals => {
+        category => {
             summary => 'This argument contains valid values and '.
                 'their summaries in the schema',
             schema => ['str*' => {
-                in => [qw/flamingo frog rabbit/],
+                in => [qw/citrus tropical melon stone/],
                 'x.in.summaries' => [
-                    "Aren't your foot tired?",
-                    "What if you don't turn after I kiss you?",
-                    "What's up doc?",
+                    "Oranges, grapefruits, pomelos",
+                    "Bananas, mangoes",
+                    "Watermelons, honeydews",
+                    "Apricots, nectarines, peaches",
                 ],
             }],
         },
