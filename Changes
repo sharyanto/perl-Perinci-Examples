@@ -1,3 +1,9 @@
+0.815   2019-07-06  Released-By: PERLANCAR; Urgency: medium
+
+	- Add function: animal_choice() to demonstrate x.examples &
+	  x.examples.summaries.
+
+
 0.814   2019-06-29 (PERLANCAR)
 
 	- [completion] Replace example with the same theme.
