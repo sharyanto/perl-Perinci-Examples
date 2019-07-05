@@ -71,6 +71,39 @@ sub fruits {
     [200, "OK", {@_}];
 }
 
+$SPEC{animal_choice} = {
+    v => 1.1,
+    summary => 'Specify an animal (optional), some examples given in schema (for completion)',
+    args => {
+        animal => {
+            schema => ['str*', {
+                'x.examples' => [
+                    'dog',
+                    'bird',
+                    'elephant',
+                ],
+                'x.examples.summaries' => [
+                    'You cannot teach this animal new tricks when it is old',
+                    'Two of this can be killed with one stone',
+                    'It never forgets',
+                ],
+            }],
+            pos => 0,
+        },
+    },
+    description => <<'_',
+
+Demonstrates `x.examples` and `x.examples.summaries` Sah schema attributes.
+Unlike the `in` clause, the value of an argument is not restricted to only
+values specified in the `x.examples`. `x.examples` serves to give examples of
+valid values, hint for completion, etc.
+
+_
+};
+sub animal_choice {
+    [200, "OK", {@_}];
+}
+
 1;
 #ABSTRACT:
 
