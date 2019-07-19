@@ -73,30 +73,41 @@ sub fruits {
 
 $SPEC{animal_choice} = {
     v => 1.1,
-    summary => 'Specify an animal (optional), some examples given in schema (for completion)',
+    summary => 'Specify an animal (optional) and a color (optional), '.
+        'with some examples given in argument spec or schema (for completion)',
     args => {
         animal => {
             schema => ['str*', {
-                'x.examples' => [
-                    'dog',
-                    'bird',
-                    'elephant',
-                ],
-                'x.examples.summaries' => [
-                    'You cannot teach this animal new tricks when it is old',
-                    'Two of this can be killed with one stone',
-                    'It never forgets',
+                'examples' => [
+                    {value=>'dog', summary=>'You cannot teach this animal new tricks when it is old'},
+                    {value=>'bird', summary=>'Two of this can be killed with one stone'},
+                    {value=>'elephant', summary=>'It never forgets'},
                 ],
             }],
+            pos => 0,
+        },
+        color => {
+            schema => ['str*'],
+            examples => [
+                'black',
+                'blue',
+                {value=>'chartreuse', summary=>'half green, half yellow'},
+                {value=>'cyan', summary=>'half green, half blue'},
+                'green',
+                'grey',
+                {value=>'magenta', summary=>'half red, half blue'},
+                'red',
+                'white',
+                'yellow',
+            ],
             pos => 0,
         },
     },
     description => <<'_',
 
-Demonstrates `x.examples` and `x.examples.summaries` Sah schema attributes.
-Unlike the `in` clause, the value of an argument is not restricted to only
-values specified in the `x.examples`. `x.examples` serves to give examples of
-valid values, hint for completion, etc.
+Demonstrates Rinci argument spec `examples` property as well as Sah schema's
+`examples` clause. This property is a source of valid values for the argument
+and can be used for testing, documentation, or completion.
 
 _
 };
