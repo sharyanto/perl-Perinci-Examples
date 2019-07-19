@@ -6,7 +6,8 @@
 
 0.814   2019-06-29  Released-By: PERLANCAR
 
-	- [completion] Replace example with the same theme.
+	- [completion] Replace previous example with another with the same
+          theme as existing example.
 
 
 0.813   2019-06-29  Released-By: PERLANCAR
@@ -20,7 +21,7 @@
 
 0.812   2019-04-15  Released-By: PERLANCAR
 
-	- Use slurpy instead of greedy for example (Rinci 1.1.88).
+	- Use slurpy instead of greedy for the example (Rinci 1.1.88).
 
 
 0.811   2018-12-07  Released-By: PERLANCAR
