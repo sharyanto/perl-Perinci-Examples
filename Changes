@@ -1,3 +1,10 @@
+0.816   2019-07-19  Released-By: PERLANCAR; Urgency: medium
+
+	- Completion: Replace Sah attribute 'x.examples' with Sah clause
+	  'examples', also add example for Rinci arg spec's 'examples'
+	  property.
+
+
 0.815   2019-07-06  Released-By: PERLANCAR; Urgency: medium
 
 	- Add function: animal_choice() to demonstrate x.examples &
