@@ -31,7 +31,9 @@
 
 0.810   2018-11-29  Released-By: PERLANCAR
 
-	- Add argument examples.
+	- Add argument examples ('x.examples') which is a source of sample valid
+          values that can be used in completion, among others. Also adds an
+          example for 'x.examples.summaries'.
 
 
 0.80    2017-07-11  Released-By: PERLANCAR
