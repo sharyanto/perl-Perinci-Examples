@@ -71,7 +71,7 @@ sub fruits {
     [200, "OK", {@_}];
 }
 
-$SPEC{animal_choice} = {
+$SPEC{animals} = {
     v => 1.1,
     summary => 'Specify an animal (optional) and a color (optional), '.
         'with some examples given in argument spec or schema (for completion)',
@@ -111,7 +111,7 @@ and can be used for testing, documentation, or completion.
 
 _
 };
-sub animal_choice {
+sub animals {
     [200, "OK", {@_}];
 }
 
