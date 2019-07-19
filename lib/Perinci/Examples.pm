@@ -455,6 +455,23 @@ _
                 ],
             }],
         },
+        s1c => {
+            summary => 'String with examples in schema',
+            schema  => [str => {
+                examples => [
+                    'bar',
+                    {value=>'baz', summary=>'foo'},
+                ],
+            }],
+        },
+        s1d => {
+            summary => 'String with examples in argument spec',
+            schema  => ['str'],
+            examples => [
+                'bar',
+                {value=>'baz', summary=>'foo'},
+            ],
+        },
         s2 => {
             summary => 'String with completion routine that generate random letter',
             schema  => 'str',
