@@ -221,19 +221,18 @@ _
         },
         output => {
             summary => 'Specify output filename',
-            schema => 'str*',
-            "x.schema.entity" => "filename",
+            schema => 'filename*',
             description => <<'_',
 
 This option demonstrates how the option would be displayed in the help/usage.
-Due to the `x.schema.entity` attribute giving hint about what the value is, CLI
-framework can show:
+Due to the `schema` being `filename` instead of just `str`, CLI framework can
+show:
 
-    --output=file
+    --output=filename
 
-instead of the plain and less informative:
+instead of the less informative:
 
-    --output=s
+    --output=str
 
 _
         },
