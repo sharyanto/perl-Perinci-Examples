@@ -2,7 +2,9 @@
 
 package Perinci::Examples;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 use 5.010001;
@@ -354,7 +356,7 @@ sub noop2 {
     [200, "OK", "a=$args{a}\nb=$args{b}\nc=$args{c}\nd=$args{d}\ne=$args{e}"];
 }
 
-$SPEC{test_completion} = {
+$SPEC{completion} = {
     v => 1.1,
     summary => "Do nothing, return args",
     description => <<'_',
@@ -562,7 +564,7 @@ _
         },
     },
 };
-sub test_completion {
+sub completion {
     my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", \%args];
 }
@@ -676,7 +678,7 @@ sub merge_hash {
     [200, "OK", {%$h1, %$h2}];
 }
 
-$SPEC{test_validate_args} = {
+$SPEC{validate_args} = {
     v => 1.1,
     summary => "Does nothing, only here to test # VALIDATE_ARGS",
     args => {
@@ -696,7 +698,7 @@ $SPEC{test_validate_args} = {
     features => {},
     "x.perinci.sub.wrapper.disable_validate_args" => 1,
 };
-sub test_validate_args {
+sub validate_args {
     my %args = @_; # VALIDATE_ARGS
     [200];
 }
@@ -800,7 +802,7 @@ sub return_args {
     [200, "OK", \%args];
 }
 
-$SPEC{test_common_opts} = {
+$SPEC{common_opts} = {
     v => 1.1,
     summary => 'This function has arguments with the same name as Perinci::CmdLine common options',
     args => {
@@ -822,7 +824,7 @@ $SPEC{test_common_opts} = {
         log_level => { schema => 'str' },
     },
 };
-sub test_common_opts {
+sub common_opts {
     my %args = @_; # NO_VALIDATE_ARGS
     [200, "OK", \%args];
 }
@@ -897,7 +899,7 @@ sub gen_sample_data {
     [200, "OK", $data];
 }
 
-$SPEC{test_args_as_array} = {
+$SPEC{args_as_array} = {
     v => 1.1,
     args_as => 'array',
     description => <<'_',
@@ -913,12 +915,12 @@ _
         a2 => { pos=>2, schema=>'str*' },
     },
 };
-sub test_args_as_array {
+sub args_as_array {
     # NO_VALIDATE_ARGS
     [200, "OK", \@_];
 }
 
-$SPEC{test_args_as_arrayref} = {
+$SPEC{args_as_arrayref} = {
     v => 1.1,
     args_as => 'arrayref',
     description => <<'_',
@@ -933,12 +935,12 @@ _
         a2 => { pos=>2, schema=>'str*' },
     },
 };
-sub test_args_as_arrayref {
+sub args_as_arrayref {
      # NO_VALIDATE_ARGS
     [200, "OK", $_[0]];
 }
 
-$SPEC{test_args_as_hashref} = {
+$SPEC{args_as_hashref} = {
     v => 1.1,
     args_as => 'hashref',
     description => <<'_',
@@ -952,12 +954,12 @@ _
         a1 => { schema=>'str*' },
     },
 };
-sub test_args_as_hashref {
+sub args_as_hashref {
     my $args = shift; # NO_VALIDATE_ARGS
     [200, "OK", $args];
 }
 
-$SPEC{test_result_naked} = {
+$SPEC{result_naked} = {
     v => 1.1,
     description => <<'_',
 
@@ -974,12 +976,12 @@ _
     },
     result_naked => 1,
 };
-sub test_result_naked {
+sub result_naked {
     my %args = @_; # NO_VALIDATE_ARGS
     \%args;
 }
 
-$SPEC{test_dry_run} = {
+$SPEC{dry_run} = {
     v => 1.1,
     summary => "Will return 'wet' if not run under dry run mode, or 'dry' if dry run",
     description => <<'_',
@@ -994,7 +996,7 @@ _
         dry_run => 1,
     },
 };
-sub test_dry_run {
+sub dry_run {
     my %args = @_; # NO_VALIDATE_ARGS
     if ($args{-dry_run}) {
         return [200, "OK", "dry"];
@@ -1003,7 +1005,33 @@ sub test_dry_run {
     }
 }
 
-$SPEC{test_binary} = {
+$SPEC{dry_run_default} = {
+    v => 1.1,
+    summary => "Will return 'wet' if not run under dry run mode, or 'dry' if dry run",
+    description => <<'_',
+
+This function is like `dry_run`, except the default mode is dry-run.
+
+The way you detect whether we are running under dry-run mode is to check the
+special argument `$args{-dry_run}`.
+
+_
+    args => {
+    },
+    features => {
+        dry_run => {default=>1},
+    },
+};
+sub dry_run_default {
+    my %args = @_; # NO_VALIDATE_ARGS
+    if ($args{-dry_run}) {
+        return [200, "OK", "dry"];
+    } else {
+        return [200, "OK", "wet"];
+    }
+}
+
+$SPEC{binary} = {
     v => 1.1,
     summary => "Accept and send binary data",
     description => <<'_',
@@ -1021,7 +1049,7 @@ To pass binary data over JSON/Riap, you can use Riap version 1.2 and encode the
 argument with ":base64" suffix, e.g.:
 
     $res = Perinci::Access->new->request(
-        call => "http://example.com/api/Perinci/Examples/test_binary",
+        call => "http://example.com/api/Perinci/Examples/binary",
         {v=>1.2, args=>{"data:base64"=>"/wA="}}); # send "\xff\0"
 
 Without `v=>1.2`, encoded argument won't be decoded by the server.
@@ -1035,7 +1063,7 @@ JSON. The client library will also decode the encoded result back to the
 original, so the whole process is transparent to you:
 
     $res = Perinci::Access->new->request(
-        call => "http://example.com/api/Perinci/Examples/test_binary",
+        call => "http://example.com/api/Perinci/Examples/binary",
         {v=>1.2}); # => [200,"OK","\0\0\0",{}]
 
 _
@@ -1046,7 +1074,7 @@ _
         schema => "buf*",
     },
 };
-sub test_binary {
+sub binary {
     my %args = @_; # NO_VALIDATE_ARGS
     my $data = $args{data} // "\0\0\0";
     return [200, "OK", $data];

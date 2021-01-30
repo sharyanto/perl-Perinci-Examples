@@ -183,7 +183,7 @@ sub cmdline_src_multi_stdin_line {
      {'func.args'=>\%args}];
 }
 
-$SPEC{test_binary} = {
+$SPEC{binary} = {
     v => 1.1,
     summary => "Accept binary in stdin/file",
     description => <<'_',
@@ -204,7 +204,7 @@ _
         schema => "buf*",
     },
 };
-sub test_binary {
+sub binary {
     my %args = @_; # NO_VALIDATE_ARGS
     my $data = $args{data} // "\0\0\0";
     return [200, "OK", $data, {'func.args'=>\%args}];
