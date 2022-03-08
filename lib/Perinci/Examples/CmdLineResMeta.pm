@@ -1,11 +1,13 @@
 package Perinci::Examples::CmdLineResMeta;
 
-# DATE
-# VERSION
-
 use 5.010;
 use strict;
 use warnings;
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our %SPEC;
 
