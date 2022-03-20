@@ -1,12 +1,14 @@
 package Perinci::Examples::Completion;
 
-# DATE
-# VERSION
-
 use 5.010;
 use strict;
 use warnings;
 use experimental 'smartmatch';
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our %SPEC;
 

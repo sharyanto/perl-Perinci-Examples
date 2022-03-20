@@ -3,6 +3,11 @@ package Perinci::Examples::rimetadb::IncludedPackage;
 use strict;
 use warnings;
 
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
+
 our %SPEC;
 
 $SPEC{':package'} = {

@@ -1,6 +1,9 @@
+## no critic: RequireUseStrict
 package Perinci::Examples::Tiny::Args;
 
+# AUTHORITY
 # DATE
+# DIST
 # VERSION
 
 our %SPEC;

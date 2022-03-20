@@ -1,11 +1,13 @@
 package Perinci::Examples::Stream;
 
-# DATE
-# VERSION
-
 use 5.010;
 use strict;
 use warnings;
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our %SPEC;
 
@@ -50,7 +52,7 @@ sub produce_ints {
     my $i = 1;
     my $num = $args{num};
     [200, "OK", sub {
-         return undef if defined($num) && $i > $num;
+         return undef if defined($num) && $i > $num; ## no critic: Subroutines::ProhibitExplicitReturnUndef
          $i++;
      }];
 }
@@ -114,7 +116,7 @@ sub produce_words {
     my $i = 1;
     my $num = $args{num};
     [200, "OK", sub {
-         return undef if defined($num) && $i > $num;
+         return undef if defined($num) && $i > $num; ## no critic: Subroutines::ProhibitExplicitReturnUndef
          $i++;
          join('', map { ['a'..'z']->[26*rand()] } 1..(int(6*rand)+5));
      }];
@@ -137,7 +139,7 @@ sub produce_words_err {
     my $i = 1;
     my $num = $args{num};
     [200, "OK", sub {
-         return undef if defined($num) && $i > $num;
+         return undef if defined($num) && $i > $num; ## no critic: Subroutines::ProhibitExplicitReturnUndef
          if ($i++ % 10 == 0) {
              "contain space";
          } else {
@@ -191,7 +193,7 @@ sub produce_hashes {
 
     my $i = 1;
     [200, "OK", sub {
-         return undef if defined($num) && $i > $num;
+         return undef if defined($num) && $i > $num; ## no critic: Subroutines::ProhibitExplicitReturnUndef
          {num=>$i++};
      }];
 }
@@ -219,7 +221,7 @@ sub square_nums {
 
     [200, "OK", sub {
          my $n = $input->();
-         return undef unless defined $n;
+         return undef unless defined $n; ## no critic: Subroutines::ProhibitExplicitReturnUndef
          $n*$n;
      }];
 }

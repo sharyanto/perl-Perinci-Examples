@@ -1,13 +1,15 @@
 package Perinci::Examples::FilePartial;
 
-# DATE
-# VERSION
-
 use 5.010;
 use strict;
 use warnings;
 
 use Fcntl qw(:DEFAULT);
+
+# AUTHORITY
+# DATE
+# DIST
+# VERSION
 
 our %SPEC;
 
