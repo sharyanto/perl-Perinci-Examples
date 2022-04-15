@@ -98,7 +98,10 @@ sub sales {
     ];
 
     [200, "OK", $table, {
-        'table.fields' => [qw/year lang title sales/],
+        'table.fields'        => [qw/year   lang   title sales/],
+        'table.field_types'   => [qw/int    str    str   float/],
+        'table.field_formats' => [   '',    '',    '',   'number'],
+        'table.field_aligns'  => [qw/middle middle left  right/],
     }];
 }
 
