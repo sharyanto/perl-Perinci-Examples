@@ -117,6 +117,22 @@ sub animals {
     [200, "OK", {@_}];
 }
 
+$SPEC{simple} = {
+    v => 1.1,
+    summary => 'Simple completion demo',
+    args => {
+        in_clause => {
+            schema => ['str*', in=>[qw/one two three four fiv/]],
+        },
+        int_up_to_12 => {
+            schema => ['int*', min=>1, max=>12],
+        },
+    },
+};
+sub simple {
+    [200, "OK", {@_}];
+}
+
 1;
 #ABSTRACT:
 
