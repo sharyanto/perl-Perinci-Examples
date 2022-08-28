@@ -58,7 +58,7 @@ sub read_file {
 
     open my($fh), "<", $path or return [500, "Can't open '$path': $!"];
 
-    [200, "OK", sub { ~~<$fh> }, {stream=>1}];
+    [200, "OK", sub { scalar <$fh> }, {stream=>1}];
 }
 
 $SPEC{write_file} = {

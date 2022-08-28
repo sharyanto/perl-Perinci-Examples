@@ -3,7 +3,6 @@ package Perinci::Examples::Completion;
 use 5.010;
 use strict;
 use warnings;
-use experimental 'smartmatch';
 
 # AUTHORITY
 # DATE
@@ -38,10 +37,10 @@ $SPEC{fruits} = {
                 );
                 my $ary = $args{args}{fruits};
                 my $res = [];
-                for (keys %allfruits) {
-                    next unless /\A\Q$word\E/i;
-                    push @$res, {word=>$_, summary=>$allfruits{$_}}
-                        unless $_ ~~ @$ary;
+                for my $fruit (keys %allfruits) {
+                    next unless $fruit =~ /\A\Q$word\E/i;
+                    push @$res, {word=>$fruit, summary=>$allfruits{$fruit}}
+                        unless grep { $fruit eq $_ } @$ary;
                 }
                 $res;
             },
