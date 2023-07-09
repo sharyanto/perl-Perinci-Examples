@@ -101,7 +101,7 @@ $SPEC{animals} = {
                 'white',
                 'yellow',
             ],
-            pos => 0,
+            pos => 1,
         },
     },
     description => <<'_',
